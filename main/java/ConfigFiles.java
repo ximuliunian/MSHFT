@@ -1,4 +1,5 @@
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.annotation.JSONType;
 
 // 配置文件的属性初始化
 class InitMkdirs {
@@ -45,37 +46,53 @@ class InitMkdirs {
     }
 }
 
-// 版本控制
-class VersionManagement {
+// 版本资源
+@JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd"})
+class WorldData {
+    private String worldName; // 世界名
+    private String briefIntroduction; // 简介
+    private String startDate; // 创建时间
+    private String tailEnd; // 结束时间
+    private String mkdir; // 文件夹名
 
-    @JSONField(name = "1.12.2")
-    private String b1_12;
-    @JSONField(name = "1.16.5")
-    private String b1_16;
-    @JSONField(name = "1.18.2")
-    private String b1_18;
 
-    public String getB1_12() {
-        return b1_12;
+    public String getMkdir() {
+        return mkdir;
     }
 
-    public void setB1_12(String b1_12) {
-        this.b1_12 = b1_12;
+    public void setMkdir(String mkdir) {
+        this.mkdir = mkdir;
     }
 
-    public String getB1_16() {
-        return b1_16;
+    public String getWorldName() {
+        return worldName;
     }
 
-    public void setB1_16(String b1_16) {
-        this.b1_16 = b1_16;
+    public void setWorldName(String worldName) {
+        this.worldName = worldName;
     }
 
-    public String getB1_18() {
-        return b1_18;
+    public String getBriefIntroduction() {
+        return briefIntroduction;
     }
 
-    public void setB1_18(String b1_18) {
-        this.b1_18 = b1_18;
+    public void setBriefIntroduction(String briefIntroduction) {
+        this.briefIntroduction = briefIntroduction;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getTailEnd() {
+        return tailEnd;
+    }
+
+    public void setTailEnd(String tailEnd) {
+        this.tailEnd = tailEnd;
     }
 }

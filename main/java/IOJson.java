@@ -3,6 +3,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,10 +44,8 @@ class IOJson {
     }
 
     // 正常输入
-    void inputJson(String vbt, WorldData wd) {
+    void inputJson(Map<String, List<WorldData>> map) {
         File newvn = new File("versionManagement.json");
-        Map<String, List<WorldData>> map = JSON.parseObject(JSON.toJSONString(newvn), new TypeReference<Map<String, List<WorldData>>>() {
-        });
         String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue);
         iptJson(json, newvn);
     }
@@ -54,8 +53,7 @@ class IOJson {
     private void iptJson(String s, File upData) {
         try {
             upData.createNewFile();
-//            Writer write = new OutputStreamWriter(new FileOutputStream(upData), "UTF-8");
-            FileWriter write = new FileWriter(upData, true);
+            Writer write = new OutputStreamWriter(new FileOutputStream(upData), "UTF-8");
             write.write(s);
             write.flush();
             write.close();
