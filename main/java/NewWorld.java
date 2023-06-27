@@ -1,6 +1,5 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.annotation.JSONType;
 
 import java.io.File;
 import java.io.IOException;
@@ -79,7 +78,7 @@ public class NewWorld {
 
                 // 版本信息更新到配置文件里面
                 IOJson ioJson = new IOJson();
-                ioJson.inputJson(map);
+                ioJson.inputJsonCF(map);
 
             } catch (IOException e) {
                 f.delete();

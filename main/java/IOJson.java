@@ -1,9 +1,7 @@
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,18 +36,19 @@ class IOJson {
 
     // 初始化版本配置文件
     void initJsonCf(Map<String, List<WorldData>> map) {
-        String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue);
+        String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         File newvn = new File("versionManagement.json");
         iptJson(json, newvn);
     }
 
     // 正常输入
-    void inputJson(Map<String, List<WorldData>> map) {
+    void inputJsonCF(Map<String, List<WorldData>> map) {
         File newvn = new File("versionManagement.json");
-        String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue);
+        String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         iptJson(json, newvn);
     }
 
+    // 把内容输入文件，输入时先创建文件，如果有文件不执行无文件的话创建该文件
     private void iptJson(String s, File upData) {
         try {
             upData.createNewFile();
@@ -57,9 +56,8 @@ class IOJson {
             write.write(s);
             write.flush();
             write.close();
-            System.out.println("构建成功");
         } catch (IOException e) {
-            System.out.println("构建失败");
+            System.out.println("失败");
         }
     }
 }

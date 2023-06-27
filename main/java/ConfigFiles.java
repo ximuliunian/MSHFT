@@ -47,7 +47,7 @@ class InitMkdirs {
 }
 
 // 版本资源
-@JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd"})
+@JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd", "mkdir"})
 class WorldData {
     private String worldName; // 世界名
     private String briefIntroduction; // 简介

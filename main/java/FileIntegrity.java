@@ -16,7 +16,6 @@ public class FileIntegrity {
         } else {
             //抛出错误并创建新的配置文件（此配置文件为新的只有最基本的数据）
             System.out.println("配置文件：缺失");
-            System.out.println("正在尝试构建");
             Mkdirs();
         }
     }
@@ -29,7 +28,6 @@ public class FileIntegrity {
         } else {
             //抛出错误并创建新的配置文件（此配置文件为新的只有最基本的数据）
             System.out.println("版本配置文件：缺失");
-            System.out.println("正在尝试构建");
             MkdirsCf();
         }
     }
@@ -40,6 +38,7 @@ public class FileIntegrity {
 
         if (errorEx.Hx("1.12.2")) {
             System.out.println("核心1.12.2：正常");
+            Mkdirs();
         } else {
             System.out.println("核心1.12.2：缺失");
             //尝试进行恢复核心
@@ -48,6 +47,7 @@ public class FileIntegrity {
 
         if (errorEx.Hx("1.16.5")) {
             System.out.println("核心1.16.5：正常");
+            Mkdirs();
         } else {
             System.out.println("核心1.16.5：缺失");
             //尝试进行恢复核心
@@ -56,6 +56,7 @@ public class FileIntegrity {
 
         if (errorEx.Hx("1.18.2")) {
             System.out.println("核心1.18.2：正常");
+            Mkdirs();
         } else {
             System.out.println("核心1.18.2：缺失");
             //尝试进行恢复核心
@@ -65,19 +66,21 @@ public class FileIntegrity {
 
     // 尝试恢复核心
     void recoverHx(String bb) {
+        System.out.println("正在尝试恢复");
         // 拿到json数据
-        String json = new IOJson().readJson("config.json");
+        String json = new IOJson().readJson("versionManagement.json");
         // 反序列化map
-        Map<String, InitMkdirs> map = JSON.parseObject(json, new TypeReference<Map<String, InitMkdirs>>() {
+        Map<String, List<WorldData>> map = JSON.parseObject(json, new TypeReference<Map<String, List<WorldData>>>() {
         });
-        for (Map.Entry<String, InitMkdirs> entry : map.entrySet()) {
+        for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
             if (bb.equals(entry.getKey()))
-                if (entry.getValue() != null) {
+                if (!entry.getValue().isEmpty()) {
                     // 尝试恢复
                 } else {
                     System.out.println("无法恢复，请前往https://catmc.org下载" + bb + "版本");
                 }
         }
+        Mkdirs();
     }
 
     // 判断文件
@@ -118,13 +121,14 @@ public class FileIntegrity {
     // 生成新的版本配置文件
     private void MkdirsCf() {
         Map<String, List<WorldData>> map = new HashMap<>();
-        map.put("1.12.2", null);
-        map.put("1.16.5", null);
-        map.put("1.18.2", null);
+
+        map.put("1.12.2", new ArrayList<>());
+        map.put("1.16.5", new ArrayList<>());
+        map.put("1.18.2", new ArrayList<>());
 
         IOJson json = new IOJson();
         json.initJsonCf(map);
-
+        Mkdirs();
     }
 }
 
