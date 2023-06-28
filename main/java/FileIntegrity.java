@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 // 初始化并检查核心与配置文件的完整性
@@ -75,7 +76,19 @@ public class FileIntegrity {
         for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
             if (bb.equals(entry.getKey()))
                 if (!entry.getValue().isEmpty()) {
-                    // 尝试恢复
+                    // 尝试恢复核心
+                    for (int i = 0; i < entry.getValue().size(); i++) {
+                        File f1 = new File(bb + "/" + entry.getValue().get(i).getMkdir());
+                        File f2 = new File(f1 + "/CatServer-" + bb + ".jar");
+                        if (!f1.exists() && !f2.exists()) continue;
+                        try {
+                            Files.copy(f2.toPath(), new File("server/CatServer-" + bb + ".jar").toPath());
+                            System.out.println("恢复成功");
+                            break;
+                        } catch (IOException e) {
+                            System.out.println("无法恢复，请前往https://catmc.org下载" + bb + "版本");
+                        }
+                    }
                 } else {
                     System.out.println("无法恢复，请前往https://catmc.org下载" + bb + "版本");
                 }

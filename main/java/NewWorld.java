@@ -64,10 +64,12 @@ public class NewWorld {
             File h = new File("server/CatServer-" + vbt + ".jar");
             System.out.println("正在移动核心");
             try {
+                // 把核心核心文件夹里面复制一份到新创建的隔离文件夹
                 File r = new File(f + "/CatServer-" + vbt + ".jar");
                 Files.copy(h.toPath(), r.toPath());
                 System.out.println("核心移动成功");
 
+                // json信息进行更新
                 Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson("versionManagement.json"), new TypeReference<Map<String, List<WorldData>>>() {
                 });
                 for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
