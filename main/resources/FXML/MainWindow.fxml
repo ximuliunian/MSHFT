@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 主页面 -->
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="FXML.MainWindow">
+    <children>
+        <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
+            <children>
+                <HBox prefHeight="50.0" prefWidth="900.0">
+                    <children>
+                        <Button onAction="#newSer" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0"
+                                text="创建服务器">
+                            <HBox.margin>
+                                <Insets right="200.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Button>
+                        <Button onAction="#cFile" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0"
+                                text="文件完整性">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <TableView layoutY="57.0" prefHeight="543.0" prefWidth="900.0">
+                    <columns>
+                        <TableColumn prefWidth="145" text="世界名"/>
+                        <TableColumn prefWidth="300" text="简介"/>
+                        <TableColumn prefWidth="100" text="创建日期"/>
+                        <TableColumn prefWidth="100" text="最后运行日期"/>
+                        <TableColumn prefWidth="90" text="版本"/>
+                        <TableColumn prefWidth="90" text="状态"/>
+                        <TableColumn prefWidth="75" text="配置"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
