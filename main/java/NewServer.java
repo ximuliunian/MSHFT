@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 // 服务器创建与版本隔离
-public class NewWorld {
+public class NewServer {
     // 选择要创建服务器的版本
     void nw_bb() {
         int a;
@@ -70,7 +70,7 @@ public class NewWorld {
                 System.out.println("核心移动成功");
 
                 // json信息进行更新
-                Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson("versionManagement.json"), new TypeReference<Map<String, List<WorldData>>>() {
+                Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, List<WorldData>>>() {
                 });
                 for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
                     if (entry.getKey().equals(vbt)) {

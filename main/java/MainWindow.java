@@ -1,10 +1,7 @@
-package FXML;
 // 新建服务器
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -30,7 +27,7 @@ public class MainWindow {
     // 点击打开文件完整性
     public void cFile() throws IOException {
         Stage stage = new Stage();
-        Pane root = FXMLLoader.load(getClass().getResource("/FXML/ConfigFiles.fxml"));
+        Pane root = FXMLLoader.load(getClass().getResource("/FXML/FileIntegrity.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("文件完整性");
