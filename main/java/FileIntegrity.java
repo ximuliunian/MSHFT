@@ -148,7 +148,7 @@ public class FileIntegrity {
     void ErrorMkdir() {
         // 判断文件夹 - 1.12.2
         File v1_12 = new File("1.12.2");
-        if (v1_12.exists()) Mkdir("1.12.2");
+        if (!v1_12.exists()) Mkdir("1.12.2");
 
         // 判断文件夹 - 1.16.5
         File v1_16 = new File("1.16.5");
@@ -195,7 +195,9 @@ public class FileIntegrity {
                             Thread.sleep(1000);
                             ErrorMkdir();
                             textArea.appendText("\n隔离文件夹正常");
+                            Thread.sleep(1000);
 
+                            textArea.appendText("\n检查完成……");
                         } catch (InterruptedException ex) {
                             textArea.appendText("\n出错了");
                         }

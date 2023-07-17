@@ -7,15 +7,27 @@ class WorldData {
     private String briefIntroduction; // 简介
     private String startDate; // 创建时间
     private String tailEnd; // 结束时间
+    private String version; // 版本
     private String mkdir; // 文件夹名
 
-
-    public String getMkdir() {
-        return mkdir;
+    public WorldData(String worldName, String briefIntroduction, String startDate, String version, String tailEnd) {
+        this.worldName = worldName;
+        this.briefIntroduction = briefIntroduction;
+        this.startDate = startDate;
+        this.version = version;
+        this.tailEnd = tailEnd;
     }
 
-    public void setMkdir(String mkdir) {
-        this.mkdir = mkdir;
+    public WorldData() {
+
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public String getWorldName() {
@@ -48,5 +60,13 @@ class WorldData {
 
     public void setTailEnd(String tailEnd) {
         this.tailEnd = tailEnd;
+    }
+
+    public String getMkdir() {
+        return mkdir;
+    }
+
+    public void setMkdir(String mkdir) {
+        this.mkdir = mkdir;
     }
 }

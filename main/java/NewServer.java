@@ -1,5 +1,12 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,37 +16,59 @@ import java.util.*;
 
 // 服务器创建与版本隔离
 public class NewServer {
+    @FXML
+    private TextField worldName;
+    @FXML
+    private TextField briefIntroduction;
+    @FXML
+    private ToggleGroup version;
+    @FXML
+    private TextField textField;
+
+
     // 选择要创建服务器的版本
-    void nw_bb() {
-        int a;
-        System.out.println("请输入要创建的服务器版本：");
-        Scanner sc = new Scanner(System.in);
-        a = sc.nextInt();
-        switch (a) {
-            case 1:
-                nw_cj("1.12.2");
-                break;
+    public void nw_bb() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        RadioButton radioButton = (RadioButton) version.getSelectedToggle();
+                        String v = (String) radioButton.getUserData();
+                        switch (v) {
+                            case "v12":
+                                nw_cj("1.12.2");
+                                break;
 
-            case 2:
-                nw_cj("1.16.5");
-                break;
+                            case "v16":
+                                nw_cj("1.16.5");
+                                break;
 
-            case 3:
-                nw_cj("1.18.2");
-                break;
-        }
+                            case "v18":
+                                nw_cj("1.18.2");
+                                break;
+                        }
+                    }
+                }.start();
+            }
+        });
     }
 
     // 创建服务器
     private void nw_cj(String vbt) {
-        Scanner sc = new Scanner(System.in);
-
         WorldData wd = new WorldData();
         // 输入名称、简介
-        System.out.println("请输入名称：");
-        wd.setWorldName(sc.next());
-        System.out.println("请输入简介：");
-        wd.setBriefIntroduction(sc.next());
+        if (worldName.getText().equals("")) {
+            wd.setWorldName("服务器");
+        } else {
+            wd.setWorldName(worldName.getText());
+        }
+        if (briefIntroduction.getText().equals("")) {
+            wd.setBriefIntroduction("阿巴阿巴~~~");
+        } else {
+            wd.setBriefIntroduction(briefIntroduction.getText());
+        }
         wd.setStartDate(vdate());
         wd.setTailEnd(vdate());
 
@@ -55,19 +84,20 @@ public class NewServer {
         String path = wd.getWorldName() + "." + format.format(new Date());
         File f = new File(vbt + "/" + path);
         if (!f.mkdir()) {
-            System.out.println("创建隔离文件：失败");
+            textField.setText("创建隔离文件：失败");
         } else {
-            System.out.println("创建隔离文件：成功");
+            textField.setText("创建隔离文件：成功");
             wd.setMkdir(path);
 
             // 把核心从 server 中复制到新建的隔离文件夹里面
             File h = new File("server/CatServer-" + vbt + ".jar");
-            System.out.println("正在移动核心");
+            textField.setText("正在移动核心");
             try {
                 // 把核心核心文件夹里面复制一份到新创建的隔离文件夹
                 File r = new File(f + "/CatServer-" + vbt + ".jar");
                 Files.copy(h.toPath(), r.toPath());
-                System.out.println("核心移动成功");
+                textField.setText("核心移动成功");
+                textField.setText(wd.getWorldName() + "创建完成");
 
                 // json信息进行更新
                 Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, List<WorldData>>>() {
@@ -84,14 +114,14 @@ public class NewServer {
 
             } catch (IOException e) {
                 f.delete();
-                System.out.println("核心移动失败");
+                textField.setText("核心移动失败");
             }
         }
     }
 
     // 输出现在时间
     String vdate() {
-        SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(new Date());
     }
 }

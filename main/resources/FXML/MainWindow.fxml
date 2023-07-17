@@ -2,6 +2,7 @@
 
 <!-- 主页面 -->
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -14,16 +15,21 @@
             <children>
                 <HBox prefHeight="50.0" prefWidth="900.0">
                     <children>
-                        <Button onAction="#newSer" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0"
+                        <Button mnemonicParsing="false" onAction="#newSer" prefHeight="50.0" prefWidth="400.0"
                                 text="创建服务器">
                             <HBox.margin>
-                                <Insets right="200.0"/>
+                                <Insets right="50.0"/>
                             </HBox.margin>
                             <font>
                                 <Font size="20.0"/>
                             </font>
                         </Button>
-                        <Button onAction="#cFile" mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0"
+                        <Button mnemonicParsing="false" onAction="#updata" prefWidth="200.0" text="刷新">
+                            <HBox.margin>
+                                <Insets right="50.0" top="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#cFile" prefHeight="50.0" prefWidth="400.0"
                                 text="文件完整性">
                             <font>
                                 <Font size="20.0"/>
@@ -31,15 +37,15 @@
                         </Button>
                     </children>
                 </HBox>
-                <TableView layoutY="57.0" prefHeight="543.0" prefWidth="900.0">
+                <TableView fx:id="tableView" layoutY="57.0" prefHeight="543.0" prefWidth="900.0">
                     <columns>
-                        <TableColumn prefWidth="145" text="世界名"/>
-                        <TableColumn prefWidth="300" text="简介"/>
-                        <TableColumn prefWidth="100" text="创建日期"/>
-                        <TableColumn prefWidth="100" text="最后运行日期"/>
-                        <TableColumn prefWidth="90" text="版本"/>
-                        <TableColumn prefWidth="90" text="状态"/>
-                        <TableColumn prefWidth="75" text="配置"/>
+                        <TableColumn fx:id="worldName" prefWidth="145.0" resizable="false" text="世界名"/>
+                        <TableColumn fx:id="briefIntroduction" prefWidth="300.0   " resizable="false" text="简介"/>
+                        <TableColumn fx:id="startDate" prefWidth="100" resizable="false" text="创建日期"/>
+                        <TableColumn fx:id="tailEnd" prefWidth="100" resizable="false" text="最后运行日期"/>
+                        <TableColumn fx:id="version" prefWidth="90" resizable="false" text="版本"/>
+                        <TableColumn fx:id="redact" prefWidth="90" resizable="false" text="编辑"/>
+                        <TableColumn fx:id="config" prefWidth="73.0" resizable="false" text="配置"/>
                     </columns>
                 </TableView>
             </children>
