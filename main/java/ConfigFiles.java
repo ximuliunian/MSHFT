@@ -1,14 +1,13 @@
 import com.alibaba.fastjson.annotation.JSONType;
 
 // 版本资源
-@JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd", "mkdir"})
+@JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd", "version"})
 class WorldData {
     private String worldName; // 世界名
     private String briefIntroduction; // 简介
     private String startDate; // 创建时间
     private String tailEnd; // 结束时间
     private String version; // 版本
-    private String mkdir; // 文件夹名
 
     public WorldData(String worldName, String briefIntroduction, String startDate, String version, String tailEnd) {
         this.worldName = worldName;
@@ -60,13 +59,5 @@ class WorldData {
 
     public void setTailEnd(String tailEnd) {
         this.tailEnd = tailEnd;
-    }
-
-    public String getMkdir() {
-        return mkdir;
-    }
-
-    public void setMkdir(String mkdir) {
-        this.mkdir = mkdir;
     }
 }

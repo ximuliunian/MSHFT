@@ -69,6 +69,7 @@ public class NewServer {
         } else {
             wd.setBriefIntroduction(briefIntroduction.getText());
         }
+        wd.setVersion(vbt);
         wd.setStartDate(vdate());
         wd.setTailEnd(vdate());
 
@@ -87,7 +88,6 @@ public class NewServer {
             textField.setText("创建隔离文件：失败");
         } else {
             textField.setText("创建隔离文件：成功");
-            wd.setMkdir(path);
 
             // 把核心从 server 中复制到新建的隔离文件夹里面
             File h = new File("server/CatServer-" + vbt + ".jar");
@@ -100,13 +100,9 @@ public class NewServer {
                 textField.setText(wd.getWorldName() + "创建完成");
 
                 // json信息进行更新
-                Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, List<WorldData>>>() {
+                Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, WorldData>>() {
                 });
-                for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
-                    if (entry.getKey().equals(vbt)) {
-                        entry.getValue().add(wd);
-                    }
-                }
+                map.put(path,wd);
 
                 // 版本信息更新到配置文件里面
                 IOJson ioJson = new IOJson();
@@ -121,7 +117,7 @@ public class NewServer {
 
     // 输出现在时间
     String vdate() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmmss");
         return format.format(new Date());
     }
 }

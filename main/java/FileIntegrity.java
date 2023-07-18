@@ -40,11 +40,8 @@ public class FileIntegrity {
             Thread.sleep(1000);
 
             // 生成新的版本配置文件
-            Map<String, List<WorldData>> map = new HashMap<>();
+            Map<String, WorldData> map = new HashMap<>();
 
-            map.put("1.12.2", new ArrayList<>());
-            map.put("1.16.5", new ArrayList<>());
-            map.put("1.18.2", new ArrayList<>());
 
             if (new IOJson().initJsonCf(map) == 1) {
                 textArea.appendText("\n恢复成功");
@@ -94,44 +91,36 @@ public class FileIntegrity {
 
     // 尝试恢复核心
     void recoverHx(String bb) throws InterruptedException {
+        Thread.sleep(1000);
         textArea.appendText("\n正在尝试恢复");
+        Thread.sleep(1000);
+        // 判断存放核心的文件夹是否村存在，不存在的进行创建
+        if (!new File("server").exists()) Mkdir("server");
         Thread.sleep(1000);
         // 拿到json数据
         String json = new IOJson().readJson();
         // 反序列化map
-        Map<String, List<WorldData>> map = JSON.parseObject(json, new TypeReference<Map<String, List<WorldData>>>() {
+        Map<String, WorldData> map = JSON.parseObject(json, new TypeReference<Map<String, WorldData>>() {
         });
-        for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
-            if (bb.equals(entry.getKey()))
-                if (!entry.getValue().isEmpty()) {
-                    // 尝试恢复核心
-                    for (int i = 0; i < entry.getValue().size(); i++) {
-                        File f1 = new File(bb + "/" + entry.getValue().get(i).getMkdir());
-                        File f2 = new File(f1 + "/CatServer-" + bb + ".jar");
-                        if (!f1.exists() && !f2.exists()) continue;
-                        try {
-                            Files.copy(f2.toPath(), new File("server/CatServer-" + bb + ".jar").toPath());
-                            textArea.appendText("\n恢复成功");
-                            if (bb.equals("1.12.2")) {
-                                v12.setText("正常");
-                            } else if (bb.equals("1.16.5")) {
-                                v16.setText("正常");
-                            } else {
-                                v18.setText("正常");
-                            }
-                            break;
-                        } catch (IOException e) {
-                            if (bb.equals("1.12.2")) {
-                                v12.setText("缺失");
-                            } else if (bb.equals("1.16.5")) {
-                                v16.setText("缺失");
-                            } else {
-                                v18.setText("缺失");
-                            }
-                            textArea.appendText("\n恢复失败请前往https://catmc.org下载" + bb + "版本");
-                        }
+        for (Map.Entry<String, WorldData> entry : map.entrySet()) {
+            // 先找到要恢复的版本然后判断是否有那个文件夹
+            if (bb.equals(entry.getValue().getVersion())) {
+                // 尝试恢复核心
+                File f1 = new File(bb + "/" + entry.getKey());
+                File f2 = new File(f1 + "/CatServer-" + bb + ".jar");
+                if (!f1.exists() && !f2.exists()) continue;
+                try {
+                    Files.copy(f2.toPath(), new File("server/CatServer-" + bb + ".jar").toPath());
+                    textArea.appendText("\n恢复成功");
+                    if (bb.equals("1.12.2")) {
+                        v12.setText("正常");
+                    } else if (bb.equals("1.16.5")) {
+                        v16.setText("正常");
+                    } else {
+                        v18.setText("正常");
                     }
-                } else {
+                    return;
+                } catch (IOException e) {
                     if (bb.equals("1.12.2")) {
                         v12.setText("缺失");
                     } else if (bb.equals("1.16.5")) {
@@ -141,7 +130,17 @@ public class FileIntegrity {
                     }
                     textArea.appendText("\n恢复失败请前往https://catmc.org下载" + bb + "版本");
                 }
+            }
         }
+        // 正常循环完成之后代表没有核心，这时候给出错误提示
+        if (bb.equals("1.12.2")) {
+            v12.setText("缺失");
+        } else if (bb.equals("1.16.5")) {
+            v16.setText("缺失");
+        } else {
+            v18.setText("缺失");
+        }
+        textArea.appendText("\n恢复失败请前往https://catmc.org下载" + bb + "版本");
     }
 
     // 判断隔离版本文件夹

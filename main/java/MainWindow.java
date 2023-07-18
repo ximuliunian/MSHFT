@@ -2,21 +2,15 @@
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.sun.javafx.scene.control.ReadOnlyUnbackedObservableList;
-import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.AccessibleAttribute;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -24,9 +18,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 
@@ -52,12 +43,10 @@ public class MainWindow {
     // 把json内容输送到表里面
     public void updata() {
         ObservableList<WorldData> list = FXCollections.observableArrayList();
-        Map<String, List<WorldData>> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, List<WorldData>>>() {
+        Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, WorldData>>() {
         });
-        for (Map.Entry<String, List<WorldData>> entry : map.entrySet()) {
-            for (int i = 0; i < entry.getValue().size(); i++) {
-                list.addAll(entry.getValue().get(i));
-            }
+        for (Map.Entry<String, WorldData> entry : map.entrySet()) {
+            list.addAll(entry.getValue());
         }
         // 进行列绑定
         worldName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<WorldData, String>, ObservableValue<String>>() {
@@ -90,6 +79,7 @@ public class MainWindow {
                 return new SimpleStringProperty(param.getValue().getVersion());
             }
         });
+
         tableView.setItems(list);
     }
 

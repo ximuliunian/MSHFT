@@ -28,14 +28,14 @@ class IOJson {
     }
 
     // 初始化版本配置文件
-    int initJsonCf(Map<String, List<WorldData>> map) {
+    int initJsonCf(Map<String, WorldData> map) {
         String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         File newvn = new File("versionManagement.json");
         return iptJson(json, newvn);
     }
 
     // 正常输入
-    int inputJsonCF(Map<String, List<WorldData>> map) {
+    int inputJsonCF(Map<String, WorldData> map) {
         File newvn = new File("versionManagement.json");
         String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         return iptJson(json, newvn);
