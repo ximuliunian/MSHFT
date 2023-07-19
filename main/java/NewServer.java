@@ -2,10 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -24,6 +21,8 @@ public class NewServer {
     private ToggleGroup version;
     @FXML
     private TextField textField;
+    @FXML
+    private Button colse;
 
 
     // 选择要创建服务器的版本
@@ -31,6 +30,7 @@ public class NewServer {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                // 选择要创建的版本
                 new Thread() {
                     @Override
                     public void run() {
@@ -82,7 +82,7 @@ public class NewServer {
          * 文件夹命名规则为（世界名 + 时间）最大限度保证不重复
          * */
         SimpleDateFormat format = new SimpleDateFormat("yyMMddHHmmss");
-        String path = wd.getWorldName() + "." + format.format(new Date());
+        String path = "Server." + format.format(new Date());
         File f = new File(vbt + "/" + path);
         if (!f.mkdir()) {
             textField.setText("创建隔离文件：失败");
@@ -102,11 +102,26 @@ public class NewServer {
                 // json信息进行更新
                 Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, WorldData>>() {
                 });
-                map.put(path,wd);
+                map.put(path, wd);
 
                 // 版本信息更新到配置文件里面
                 IOJson ioJson = new IOJson();
                 ioJson.inputJsonCF(map);
+
+                // 关闭当前页面
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(300);
+                            Stage stage = (Stage) colse.getScene().getWindow();
+                            stage.close();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
 
             } catch (IOException e) {
                 f.delete();

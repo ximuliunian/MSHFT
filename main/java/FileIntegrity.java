@@ -27,8 +27,7 @@ public class FileIntegrity {
 
     // 判断版本配置文件
     void ErrorVM() throws InterruptedException {
-        ErrorExists errorEx = new ErrorExists();
-        if (errorEx.Cf("versionManagement.json")) {
+        if (new File("versionManagement.json").exists()) {
             textArea.appendText("\n版本配置文件正常");
             vn.setText("正常");
         } else {
@@ -43,7 +42,7 @@ public class FileIntegrity {
             Map<String, WorldData> map = new HashMap<>();
 
 
-            if (new IOJson().initJsonCf(map) == 1) {
+            if (creationCF()) {
                 textArea.appendText("\n恢复成功");
                 vn.setText("正常");
             } else {
@@ -51,6 +50,12 @@ public class FileIntegrity {
             }
         }
         Thread.sleep(1000);
+    }
+
+    // 创建配置文件
+     Boolean creationCF() {
+        Map<String, WorldData> map = new HashMap<>();
+        return new IOJson().initJsonCf(map) == 1;
     }
 
     // 调用ErrorHx类来判断并输出核心是否存在
@@ -213,11 +218,5 @@ class ErrorExists {
     boolean Hx(String hx) {
         File versionHx = new File("server/CatServer-" + hx + ".jar");
         return versionHx.exists();
-    }
-
-    // 判断文件
-    boolean Cf(String file) {
-        File cf = new File(file);
-        return cf.exists();
     }
 }

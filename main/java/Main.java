@@ -1,8 +1,10 @@
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,10 +15,8 @@ public class Main extends Application {
     // GUI
     @Override
     public void start(Stage stage) throws Exception {
-        // 窗口参数
-        Pane root = FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        // 主窗口
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
         stage.setTitle("MSHFT");
         stage.getIcons().add(new Image("favicon.png"));
         stage.setResizable(false);

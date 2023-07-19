@@ -2,31 +2,22 @@ import com.alibaba.fastjson.annotation.JSONType;
 
 // 版本资源
 @JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd", "version"})
-class WorldData {
+public class WorldData {
     private String worldName; // 世界名
     private String briefIntroduction; // 简介
     private String startDate; // 创建时间
     private String tailEnd; // 结束时间
     private String version; // 版本
 
-    public WorldData(String worldName, String briefIntroduction, String startDate, String version, String tailEnd) {
+    public WorldData(String worldName, String briefIntroduction, String startDate, String tailEnd, String version) {
         this.worldName = worldName;
         this.briefIntroduction = briefIntroduction;
         this.startDate = startDate;
-        this.version = version;
         this.tailEnd = tailEnd;
+        this.version = version;
     }
 
     public WorldData() {
-
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
     public String getWorldName() {
@@ -59,5 +50,13 @@ class WorldData {
 
     public void setTailEnd(String tailEnd) {
         this.tailEnd = tailEnd;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }
