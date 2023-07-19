@@ -63,15 +63,23 @@ public class MainWindow {
 
     // 打开服务器操作页面并关闭当前页面
     public void SerCon() throws IOException {
-
+        // 获取点击的行
+        WorldData data = tableView.getSelectionModel().getSelectedItem();
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SettingServer.fxml"))));
         stage.setTitle("服务器操作");
         stage.getIcons().add(new Image("favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        if (FileServer() != null) {
-            new SettingServer().setFileServerWD(FileServer());
+        if (data != null) {
+            Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, WorldData>>() {
+            });
+            for (Map.Entry<String, WorldData> entry : map.entrySet()) {
+                // 找到跟值一样的数据
+                if (entry.getValue().getStartDate().equals(data.getStartDate())) {
+                    new SettingServer().setFileServerWD(entry.getValue().getVersion(),entry.getKey());
+                }
+            }
             stage.show();
             Stage col = (Stage) SC.getScene().getWindow();
             col.close();

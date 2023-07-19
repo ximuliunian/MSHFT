@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
-import java.util.List;
 
 // 初始化并检查核心与配置文件的完整性
 public class FileIntegrity {
