@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -36,7 +35,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="添加MOD">
+                        <Button mnemonicParsing="false" onAction="#AddMod" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="添加MOD">
                             <font>
                                 <Font size="17.0" />
                             </font>
@@ -44,7 +43,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="添加光影">
+                        <Button mnemonicParsing="false" onAction="#AddWorld" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="打开世界文件夹">
                             <font>
                                 <Font size="17.0" />
                             </font>
@@ -52,28 +51,12 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="打开世界文件夹">
+                        <Button fx:id="del" mnemonicParsing="false" onAction="#Del" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="删除">
                             <font>
                                 <Font size="17.0" />
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="备份">
-                            <font>
-                                <Font size="17.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="删除">
-                            <font>
-                                <Font size="17.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="90.0" />
                             </VBox.margin>
                         </Button>
                         <HBox prefHeight="35.0" prefWidth="200.0">
@@ -143,5 +126,6 @@
                 </VBox>
             </children>
         </HBox>
+      <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction="#ReturnMain" opacity="0.8" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="&lt;- 返回主页" />
     </children>
 </Pane>

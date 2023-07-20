@@ -5,9 +5,15 @@
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -18,14 +24,19 @@ public class SettingServer {
     private TextField MOD, IP, port;
     @FXML   // 提示窗口
     private TextArea textArea;
+    @FXML
+    private Button del;
     @FXML   // 输入指令窗口
     private TextField instruction;
     @FXML   // 提交按钮
     private Button submit;
 
-
+    // 版本
     private static String ver;
+    // 文件夹名
     private static String FileServer;
+    // 这个开关默认是开着的，当点击开始服务器的时候开关上，一些按钮不可使用
+    private static boolean onOff = true;
 
     // 获取服务器目录
     public void setFileServerWD(String v, String server) {
@@ -77,44 +88,98 @@ public class SettingServer {
 
     @FXML   // 开启服务器
     public void Open() throws IOException {
-        System.setOut(new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
-                String text = String.valueOf((char) b);
-                Platform.runLater(() -> {
-                    textArea.appendText(text);
-                });
-            }
-
-            @Override
-            public void write(byte[] b, int off, int len) throws IOException {
-                String s = new String(b, off, len);
-                Platform.runLater(() -> textArea.appendText(s));
-            }
-        }, true));
-        System.setErr(System.out);
-        // 执行启动命令
-        Process process = Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && java -jar CatServer-" + ver + ".jar");
-        Charset charset = Charset.forName("gbk");
-        new Thread(() -> {
-            try (InputStreamReader reader = new InputStreamReader(process.getInputStream(), charset)) {
-                int read;
-                while ((read = reader.read()) != -1) {
-                    System.out.print((char) read);
+        // 当开关为true的时候才能进行开启服务器
+        if (onOff) {
+            // 关闭开关
+            onOff = false;
+            System.setOut(new PrintStream(new OutputStream() {
+                @Override
+                public void write(int b) throws IOException {
+                    String text = String.valueOf((char) b);
+                    Platform.runLater(() -> {
+                        textArea.appendText(text);
+                    });
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+
+                @Override
+                public void write(byte[] b, int off, int len) throws IOException {
+                    String s = new String(b, off, len);
+                    Platform.runLater(() -> textArea.appendText(s));
+                }
+            }, true));
+            System.setErr(System.out);
+            // 执行启动命令
+            Process process = Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && java -jar CatServer-" + ver + ".jar");
+            Charset charset = Charset.forName("gbk");
+            new Thread(() -> {
+                try (InputStreamReader reader = new InputStreamReader(process.getInputStream(), charset)) {
+                    int read;
+                    while ((read = reader.read()) != -1) {
+                        System.out.print((char) read);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
     }
 
     // 关闭服务器
     public void Close() throws IOException {
+        // 当开关关闭的时候才能进行开启关闭服务器
+        if (!onOff) {
+
+            // 开启开关
+            onOff = true;
+        }
+    }
+
+    // 添加MOD
+    public void AddMod() throws IOException {
+        Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer mods");
+    }
+
+    // 打开世界文件夹
+    public void AddWorld() throws IOException {
+        Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer world");
+    }
+
+    // 删除版本
+    public void Del() throws IOException {
+        // 当服务器没开的时候可以进行操作
+        if (onOff) {
+            // 二次确认
+            new ConfirmDeletion().hint(ver, FileServer, (Stage) del.getScene().getWindow());
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/ConfirmDeletion.fxml"))));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+    }
+
+    // 回主页
+    public void ReturnMain() throws IOException {
+        if (onOff) {
+            // 回退主界面
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
+            stage.setTitle("MSHFT");
+            stage.getIcons().add(new Image("favicon.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage col = (Stage) del.getScene().getWindow();
+            col.close();
+        }
     }
 
     @FXML   // 提交指令
     public void submit() {
+        if (!onOff) {
 
+        }
     }
 
 }

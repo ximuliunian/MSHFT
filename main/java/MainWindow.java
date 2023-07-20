@@ -3,6 +3,7 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,6 +38,18 @@ public class MainWindow {
         startDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         tailEnd.setCellValueFactory(new PropertyValueFactory<>("tailEnd"));
         version.setCellValueFactory(new PropertyValueFactory<>("version"));
+
+        // 禁止拖拽列
+        tableView.getColumns().addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(Change change) {
+                change.next();
+                if (change.wasReplaced()) {
+                    tableView.getColumns().clear();
+                    tableView.getColumns().addAll(worldName, briefIntroduction, startDate, tailEnd, version);
+                }
+            }
+        });
     }
 
 
@@ -77,7 +90,7 @@ public class MainWindow {
             for (Map.Entry<String, WorldData> entry : map.entrySet()) {
                 // 找到跟值一样的数据
                 if (entry.getValue().getStartDate().equals(data.getStartDate())) {
-                    new SettingServer().setFileServerWD(entry.getValue().getVersion(),entry.getKey());
+                    new SettingServer().setFileServerWD(entry.getValue().getVersion(), entry.getKey());
                 }
             }
             stage.show();

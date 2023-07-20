@@ -2,7 +2,6 @@
 
 <!-- 主页面 -->
 
-<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
