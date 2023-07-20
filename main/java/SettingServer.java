@@ -86,6 +86,11 @@ public class SettingServer {
         port.setText("正在努力中");
     }
 
+    // 服务器输入信息
+    private Process process;
+    // 编码格式
+    private Charset charset;
+
     @FXML   // 开启服务器
     public void Open() throws IOException {
         // 当开关为true的时候才能进行开启服务器
@@ -108,9 +113,11 @@ public class SettingServer {
                 }
             }, true));
             System.setErr(System.out);
-            // 执行启动命令
+            // 打开窗口
             Process process = Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && java -jar CatServer-" + ver + ".jar");
+            this.process = process;
             Charset charset = Charset.forName("gbk");
+            this.charset = charset;
             new Thread(() -> {
                 try (InputStreamReader reader = new InputStreamReader(process.getInputStream(), charset)) {
                     int read;
@@ -129,7 +136,9 @@ public class SettingServer {
     public void Close() throws IOException {
         // 当开关关闭的时候才能进行开启关闭服务器
         if (!onOff) {
-
+            OutputStream output = process.getOutputStream();
+            output.write("stop\n".getBytes(charset));
+            output.flush();
             // 开启开关
             onOff = true;
         }
@@ -176,9 +185,11 @@ public class SettingServer {
     }
 
     @FXML   // 提交指令
-    public void submit() {
-        if (!onOff) {
-
+    public void submit() throws IOException {
+        if (!onOff && instruction.getText() != null) {
+            OutputStream output = process.getOutputStream();
+            output.write((instruction.getText() + "\n").getBytes(charset));
+            output.flush();
         }
     }
 
