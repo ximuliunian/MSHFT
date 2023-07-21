@@ -2,6 +2,7 @@
 
 <!-- 主页面 -->
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -52,7 +53,7 @@
                         <Insets left="100.0" right="100.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" fx:id="SC" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作" />
+                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作" />
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -60,5 +61,6 @@
             </HBox>
          </children>
       </VBox>
+      <Button layoutX="950.0" onAction="#about" mnemonicParsing="false" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="关于" />
     </children>
 </AnchorPane>

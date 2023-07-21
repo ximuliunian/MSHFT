@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -145,6 +146,16 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/FileIntegrity.fxml"))));
         stage.setTitle("文件完整性");
+        stage.getIcons().add(new Image("favicon.png"));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void about(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/About.fxml"))));
+        stage.setTitle("关于 MSHFT");
         stage.getIcons().add(new Image("favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
