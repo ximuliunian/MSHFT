@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SerProperties">
+    <children>
+        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="350.0">
+                    <HBox.margin>
+                        <Insets right="25.0" />
+                    </HBox.margin>
+                    <children>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="端口" />
+                                <TextField fx:id="server_port" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="待机踢出" />
+                                <TextField fx:id="player_idle_timeout" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="下界" />
+                                <ChoiceBox fx:id="allow_nether" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="强制玩家加入时为默认游戏模式" wrapText="true">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                                <ChoiceBox fx:id="force_gamemode" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="白名单" />
+                                <ChoiceBox fx:id="white_list" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="极限模式" />
+                                <ChoiceBox fx:id="hardcore" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="攻击队友" />
+                                <ChoiceBox fx:id="pvp" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="命令方块" />
+                                <ChoiceBox fx:id="enable_command_block" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="正版验证" />
+                                <ChoiceBox fx:id="online_mode" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="350.0">
+                    <children>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="种子" />
+                                <TextField fx:id="level_seed" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="玩家数量" />
+                                <TextField fx:id="max_players" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="世界类型" />
+                                <ChoiceBox fx:id="level_type" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="生成村民" />
+                                <ChoiceBox fx:id="spawn_npcs" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="生成动物" />
+                                <ChoiceBox fx:id="spawn_animals" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="生成敌对生物" />
+                                <ChoiceBox fx:id="spawn_monsters" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="生成村庄" />
+                                <ChoiceBox fx:id="generate_structures" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="游戏模式" />
+                                <ChoiceBox fx:id="gamemode" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="350.0">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="150.0" text="游戏难度" />
+                                <ChoiceBox fx:id="difficulty" prefHeight="40.0" prefWidth="200.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox prefHeight="50.0" prefWidth="200.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#affirm" prefHeight="50.0" prefWidth="100.0" text="确认">
+                    <HBox.margin>
+                        <Insets left="200.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="cl" mnemonicParsing="false" onAction="#clo" prefHeight="50.0" prefWidth="100.0" text="取消">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="130.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+</VBox>

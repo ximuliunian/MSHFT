@@ -27,7 +27,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="配置信息">
+                        <Button mnemonicParsing="false" onAction="#ServerProperties" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="配置信息">
                             <font>
                                 <Font size="17.0" />
                             </font>

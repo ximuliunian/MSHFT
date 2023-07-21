@@ -65,6 +65,7 @@ public class ConfirmDeletion {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
         stage.setTitle("MSHFT");
         stage.getIcons().add(new Image("favicon.png"));
+        stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         Stage col = (Stage) cNo.getScene().getWindow();

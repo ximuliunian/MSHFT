@@ -71,7 +71,7 @@ public class NewServer {
         }
         wd.setVersion(vbt);
         wd.setStartDate(vdate());
-        wd.setTailEnd(vdate());
+        wd.setTailEnd("还没有运行过");
 
         // 检查一下版本文件夹是否存在
         FileIntegrity fileIntegrity = new FileIntegrity();
@@ -132,7 +132,7 @@ public class NewServer {
 
     // 输出现在时间
     String vdate() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmmss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(new Date());
     }
 }

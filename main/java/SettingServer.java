@@ -3,6 +3,8 @@
  * */
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,18 +20,18 @@ import javafx.stage.StageStyle;
 import java.io.*;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
+import java.util.Map;
+import java.util.Properties;
 
 public class SettingServer {
     @FXML   // MOD、IP地址、端口
     private TextField MOD, IP, port;
     @FXML   // 提示窗口
     private TextArea textArea;
-    @FXML
+    @FXML   // 删除按钮
     private Button del;
     @FXML   // 输入指令窗口
     private TextField instruction;
-    @FXML   // 提交按钮
-    private Button submit;
 
     // 版本
     private static String ver;
@@ -83,7 +85,13 @@ public class SettingServer {
 
     // 获取服务器端口
     private void Port() {
-        port.setText("正在努力中");
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader(ver + "/" + FileServer + "/server.properties"));
+            port.setText(properties.getProperty("server-port"));
+        } catch (IOException e) {
+            port.setText("无文件");
+        }
     }
 
     // 服务器输入信息
@@ -97,6 +105,17 @@ public class SettingServer {
         if (onOff) {
             // 关闭开关
             onOff = false;
+
+            // 更新一下最后启动时间
+            Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson(), new TypeReference<Map<String, WorldData>>() {
+            });
+            for (Map.Entry<String, WorldData> entry : map.entrySet()) {
+                if (entry.getKey().equals(FileServer)) {
+                    entry.getValue().setTailEnd(new NewServer().vdate());
+                    new IOJson().inputJsonCF(map);
+                }
+            }
+            // 把输出到控制台的内容输出到TextArea
             System.setOut(new PrintStream(new OutputStream() {
                 @Override
                 public void write(int b) throws IOException {
@@ -144,6 +163,16 @@ public class SettingServer {
         }
     }
 
+    // 打开服务器配置页
+    public void ServerProperties() throws IOException {
+        new SerProperties().PRO(ver + "/" + FileServer + "/server.properties");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SerProperties.fxml"))));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
     // 添加MOD
     public void AddMod() throws IOException {
         Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer mods");
@@ -176,6 +205,7 @@ public class SettingServer {
             Stage stage = new Stage();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
             stage.setTitle("MSHFT");
+            stage.setResizable(false);
             stage.getIcons().add(new Image("favicon.png"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
