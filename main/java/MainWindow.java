@@ -82,7 +82,7 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SettingServer.fxml"))));
         stage.setTitle("服务器操作");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         if (data != null) {
@@ -121,7 +121,7 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/ChangeTo.fxml"))));
         stage.setTitle("更改信息");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         if (data != null) {
@@ -135,7 +135,7 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/NewServer.fxml"))));
         stage.setTitle("新建服务器");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.show();
@@ -146,7 +146,7 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/FileIntegrity.fxml"))));
         stage.setTitle("文件完整性");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.show();
@@ -156,7 +156,7 @@ public class MainWindow {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/About.fxml"))));
         stage.setTitle("关于 MSHFT");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.show();

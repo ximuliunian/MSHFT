@@ -206,7 +206,7 @@ public class SettingServer {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
             stage.setTitle("MSHFT");
             stage.setResizable(false);
-            stage.getIcons().add(new Image("favicon.png"));
+            stage.getIcons().add(new Image("img/favicon.png"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
             Stage col = (Stage) del.getScene().getWindow();

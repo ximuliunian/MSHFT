@@ -15,7 +15,7 @@ public class Main extends Application {
         // 主窗口
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/MainWindow.fxml"))));
         stage.setTitle("MSHFT");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("img/favicon.png"));
         stage.setResizable(false);
         stage.show();
     }

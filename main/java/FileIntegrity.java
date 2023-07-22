@@ -98,9 +98,6 @@ public class FileIntegrity {
         Thread.sleep(1000);
         textArea.appendText("\n正在尝试恢复");
         Thread.sleep(1000);
-        // 判断存放核心的文件夹是否村存在，不存在的进行创建
-        if (!new File("server").exists()) Mkdir("server");
-        Thread.sleep(1000);
         // 拿到json数据
         String json = new IOJson().readJson();
         // 反序列化map
@@ -149,6 +146,10 @@ public class FileIntegrity {
 
     // 判断隔离版本文件夹
     void ErrorMkdir() {
+        // 判断文件夹 - server
+        File server = new File("server");
+        if (!server.exists()) Mkdir("server");
+
         // 判断文件夹 - 1.12.2
         File v1_12 = new File("1.12.2");
         if (!v1_12.exists()) Mkdir("1.12.2");
@@ -188,16 +189,16 @@ public class FileIntegrity {
                             Thread.sleep(1000);
                             ErrorVM();
 
+                            // 检查版本隔离文件夹是否存在
+                            textArea.appendText("\n检查文件夹是否正常");
+                            Thread.sleep(1000);
+                            ErrorMkdir();
+                            textArea.appendText("\n隔离文件夹正常");
+
                             // 检查版本核心是否缺失
                             textArea.appendText("\n检查配置核心文件是否正常");
                             Thread.sleep(1000);
                             ErrorHx();
-
-                            // 检查版本隔离文件夹是否存在
-                            textArea.appendText("\n检查隔离文件夹是否正常");
-                            Thread.sleep(1000);
-                            ErrorMkdir();
-                            textArea.appendText("\n隔离文件夹正常");
                             Thread.sleep(1000);
 
                             textArea.appendText("\n检查完成……");
