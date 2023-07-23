@@ -93,7 +93,6 @@ nav a:hover {
 }
 
 .xiazai>span>span>a {
-    display: inline-block;
     line-height: 70px;
 }
 
@@ -110,4 +109,48 @@ nav a:hover {
 .xiazai>span>span>a>button:hover {
     background-color: rgb(69 52 24);
     color: #1db783;
+}
+
+/* 简介、注意事项 */
+#wenjian,
+#jianjie,
+#gousi,
+#zhuyi {
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#wenjian,
+#zhuyi,
+#gousi,
+#pinglun {
+    margin-top: 20px;
+}
+
+#wenjian>div,
+#gousi>div,
+#jianjie>div,
+#zhuyi>div {
+    border-top: 3px dashed #1db783;
+    margin-top: 5px;
+    padding: 10px 0;
+}
+
+#jianjie>div>p,
+#zhuyi>div>p {
+    margin: 10px auto;
+}
+
+
+#pinglun {
+    background-color: #ffffff3b;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px dashed aqua;
+}
+
+.giscus {
+    border-top: 3px dashed #1db783;
 }

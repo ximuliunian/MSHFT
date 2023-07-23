@@ -7,22 +7,11 @@
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <!-- 评论插件 -->
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <!-- <script src="https://unpkg.com/docsify/lib/plugins/gitalk.min.js"></script> -->
-    <script>
-        var gitalk = new Gitalk({
-            // 这个需要在github上申请一个OAuth application
-            clientID: '600c495de65a2cd52f54',   // GitHub Application Client ID
-            clientSecret: '346e36edfcc40598fe6418412430beed6a29cc6c',   // GitHub Application Client Secret
-            repo: 'MSHFT', // //存储你评论 issue 的 Github 仓库名
-            owner: 'ximuliunian',
-            admin: ['ximuliunian'],    // 这个仓库的管理员
-            distractionFreeMode: false,  // 是否添加全屏遮罩
-            id: location.pathname    // 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
-        })
-        gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
-    </script>
+    <script src="https://giscus.app/client.js" data-repo="ximuliunian/MSHFT" data-repo-id="R_kgDOJ5PrWA"
+        data-category="Polls" data-category-id="DIC_kwDOJ5PrWM4CYEpl" data-mapping="pathname" data-strict="0"
+        data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN"
+        data-loading="lazy" crossorigin="anonymous" async>
+        </script>
     <title>MSHFT</title>
 </head>
 
@@ -66,8 +55,44 @@
             </span>
         </div>
 
-        <div class="jianjie" id="jianjie"></div>
-        <div id="gitalk-container"></div>
+        <div id="jianjie">
+            <h2>简介</h2>
+            <div>
+                <p>软件不提供自动更新服务，请隔一段时间来往这里查看</p>
+                <p>傻瓜式我的世界Java服务器开服</p>
+                <p>软件只是本地开服，有公网IP的那最好，没有的建议使用内网穿透，如：<a href="https://www.natfrp.com" target="_blank"
+                        style="color: rgb(43, 226, 189);">樱花内网穿透</a>，但必须年满18周岁</p>
+                <p>一共两个版本，分为便捷式和安装程序</p>
+                <p>便捷式：使用它有一个前提，就是电脑上安装了Java才能够使用</p>
+                <p>安装程序：不建议电脑上安装Java的人使用，因为安装包里面集成了jre，但应为集成了jre所以可以在没有安装Java的电脑上使用</p>
+                <p>目前只支持1.12.2、1.16.5、1.18.2三个版本</p>
+            </div>
+        </div>
+
+        <div id="zhuyi">
+            <h2>注意事项</h2>
+            <div>
+                <p>软件不自带开服核心，请前往<a href="https://catmc.org" target="_blank"
+                        style="color: rgb(43, 226, 189);">catmc.org</a>进行下载，下载的文件放入软件根目录的server文件夹内（没有的话手动创建一个），并对下载的文件重命名，不管原名是什么最后都命名为：CatServer-版本号.jar，如：CatServer-1.12.2.jar
+                </p>
+            </div>
+        </div>
+        <div id="gousi">
+            <h2>界面构思图</h2>
+            <div>
+                <img src="./img/界面构思图.png" width="100%">
+            </div>
+        </div>
+        <div id="wenjian">
+            <h2>文件详情图</h2>
+            <div>
+                <img src="./img/文件详情.png" width="100%">
+            </div>
+        </div>
+        <div id="pinglun">
+            <h2 style="margin-bottom: 5px;">评论</h2>
+            <div class="giscus"></div>
+        </div>
     </div>
 </body>
 
