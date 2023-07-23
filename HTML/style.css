@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 400px;
+}
+
+/* 设置背景图片 */
+#web_bg {
+    position: fixed;
+    z-index: -999;
+    width: 100%;
+    height: 100%;
+    background-image: url(./img/background.png);
+    background-attachment: local;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* 设置字幕交融效果 */
+.Htext {
+    text-align: center;
+    color: white;
+    font-size: 5rem;
+    animation: identifier 2s forwards;
+}
+
+@keyframes identifier {
+    from {
+        letter-spacing: -40px;
+        filter: blur(10px);
+    }
+
+    to {
+        letter-spacing: 0px;
+        filter: blur(0px);
+    }
+}
+
+/* 设置主体信息显示区域 */
+.mbody {
+    width: 80%;
+    margin: 0 auto;
+    border-top: 2px solid #FFFFFF;
+}
+
+/* 导航栏 */
+nav {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 2px dashed #8000ff;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #00000025;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(97, 239, 237);
+    font-weight: 400;
+}
+
+nav a:hover {
+    color: #8000ff;
+}
+
+/* 下载一栏 */
+.xiazai {
+    margin-top: 20px;
+    height: 150px;
+}
+
+.icon {
+    height: 70px;
+    width: 70px;
+    float: left;
+    background-image: url(./img/MSHFT.png);
+    background-size: 100%;
+    border-radius: 5px;
+}
+
+.xiazai>span {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.xiazai>span>span>a {
+    display: inline-block;
+    line-height: 70px;
+}
+
+.xiazai>span>span>a>button {
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #1db783;
+    color: rgb(69 52 24);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.xiazai>span>span>a>button:hover {
+    background-color: rgb(69 52 24);
+    color: #1db783;
+}

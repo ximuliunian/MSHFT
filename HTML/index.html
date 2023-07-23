@@ -6,11 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <!-- 评论插件 -->
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <!-- <script src="https://unpkg.com/docsify/lib/plugins/gitalk.min.js"></script> -->
+    <script>
+        var gitalk = new Gitalk({
+            // 这个需要在github上申请一个OAuth application
+            clientID: '600c495de65a2cd52f54',   // GitHub Application Client ID
+            clientSecret: '346e36edfcc40598fe6418412430beed6a29cc6c',   // GitHub Application Client Secret
+            repo: 'MSHFT', // //存储你评论 issue 的 Github 仓库名
+            owner: 'ximuliunian',
+            admin: ['ximuliunian'],    // 这个仓库的管理员
+            distractionFreeMode: false,  // 是否添加全屏遮罩
+            id: location.pathname    // 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
+        })
+        gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
+    </script>
     <title>MSHFT</title>
 </head>
 
 <body>
-    <h1>目前什么都没有</h1>
+    <div id="web_bg"></div>
+    <div class="Htext">M S H F T</div>
+    <div class="mbody">
+        <nav>
+            <a href="#jianjie">简介</a>
+            <a href="#zhuyi">注意事项</a>
+            <a href="#gousi">界面构思图</a>
+            <a href="#wenjian">文件详情图</a>
+            <a href="#pinglun">评论</a>
+        </nav>
+
+        <div class="xiazai">
+            <div class="icon"></div>
+            <div style="height: 70px; float: left; margin-left: 5px;">
+                <dl style="padding: 0; margin: 0;">
+                    <dt style="height: 40px; font-size: 25px;"><b>MSHFT</b></dt>
+                    <dd style="margin: 0; height: 30px; font-size: 17px; font-weight: 600;">版本-v0.1</dd>
+                </dl>
+            </div>
+            <span>
+                <span>
+                    <a
+                        href="https://ghjs.ximuliunian.top/https://github.com/ximuliunian/MSHFT/releases/download/v0.1/MSHFT.exe">
+                        <button>
+                            轻量级.exe
+                        </button>
+                    </a>
+                </span>
+                <span>
+                    <a
+                        href="https://ghjs.ximuliunian.top/https://github.com/ximuliunian/MSHFT/releases/download/安装程序/MSHFT.exe">
+                        <button>
+                            安装程序.exe
+                        </button>
+                    </a>
+                </span>
+            </span>
+        </div>
+
+        <div class="jianjie" id="jianjie"></div>
+        <div id="gitalk-container"></div>
+    </div>
 </body>
 
 </html>
