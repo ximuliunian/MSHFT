@@ -66,7 +66,7 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="MOD" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: while; -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="MOD" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
                             </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="200.0">
@@ -76,7 +76,7 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="port" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: while; -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="port" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
                             </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="200.0">
@@ -86,7 +86,7 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="IP" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: while; -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="IP" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
                             </children>
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="刷新">

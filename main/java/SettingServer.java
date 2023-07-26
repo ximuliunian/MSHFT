@@ -220,6 +220,7 @@ public class SettingServer {
             OutputStream output = process.getOutputStream();
             output.write((instruction.getText() + "\n").getBytes(charset));
             output.flush();
+            instruction.setText("");
         }
     }
 
