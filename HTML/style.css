@@ -27,7 +27,7 @@ body {
     text-align: center;
     color: white;
     font-size: 5rem;
-    animation: identifier 2s forwards;
+    animation: identifier 5s forwards;
 }
 
 @keyframes identifier {
