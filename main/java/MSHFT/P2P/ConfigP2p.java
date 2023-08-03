@@ -27,16 +27,12 @@ public class ConfigP2p {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Map<String, String> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, String>>() {
+                Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
                 });
-                for (Map.Entry<String, String> entry : map.entrySet()) {
-                    if (entry.getKey().equals("network")) {
-                        Network network = JSON.parseObject(entry.getValue(), Network.class);
-                        token.setText(String.valueOf(network.getToken()));
-                        biaoshi.setText(network.getNode());
-                        tcpdk.setText(String.valueOf(network.getTCPPort()));
-                    }
-                }
+                JSONObject jsonObject = new JSONObject(map);
+                token.setText(String.valueOf(jsonObject.getJSONObject("network").get("token")));
+                biaoshi.setText(String.valueOf(jsonObject.getJSONObject("network").get("node")));
+                tcpdk.setText(String.valueOf(jsonObject.getJSONObject("network").get("tCPPort")));
             }
         });
     }
