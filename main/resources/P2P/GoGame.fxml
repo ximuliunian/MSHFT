@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.P2P.GoGame">
+   <children>
+      <TextArea editable="false" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="500.0" text="本联机方式是基于开源项目openp2p&#10;项目开源地：https://github.com/openp2p-cn/openp2p&#10;联机原理是基于P2P连接">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#date" prefHeight="40.0" prefWidth="150.0" text="更改信息" />
+      <Button layoutX="400.0" layoutY="314.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="进入房间" />
+   </children>
+</AnchorPane>

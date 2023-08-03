@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.MainWindow">
     <children>
       <VBox layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
          <children>
@@ -50,10 +50,18 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefWidth="200.0" text="刷新表单">
                      <HBox.margin>
-                        <Insets left="100.0" right="100.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作" />
+                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#GoGame" opacity="0.8" prefWidth="200.0" text="进入联机房间">
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -61,6 +69,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="950.0" onAction="#about" mnemonicParsing="false" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="关于" />
+      <Button layoutX="950.0" mnemonicParsing="false" onAction="#about" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="关于" />
     </children>
 </AnchorPane>
