@@ -38,8 +38,9 @@
             <TextField fx:id="bendi" />
          </children>
       </HBox>
-      <Button layoutX="100.0" layoutY="199.0" mnemonicParsing="false" onAction="#texta" prefHeight="30.0" prefWidth="156.0" text="开始连接" fx:id="lianjie"/>
-      <Label layoutX="51.0" layoutY="266.0" text="温馨提示：请先确定房主已经开启房间" />
+      <Button fx:id="lianjie" layoutX="100.0" layoutY="199.0" mnemonicParsing="false" onAction="#texta" prefHeight="30.0" prefWidth="156.0" text="开始连接" />
+      <Label layoutX="36.0" layoutY="266.0" text="温馨提示：请先确定房主已经开启房间" />
+      <Label layoutX="36.0" layoutY="286.0" text="本地端口：只要是本地没有被占用的端口就行" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

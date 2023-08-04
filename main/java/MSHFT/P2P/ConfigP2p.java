@@ -18,8 +18,6 @@ public class ConfigP2p {
     private TextField token;
     @FXML
     private TextField biaoshi;
-    @FXML
-    private TextField tcpdk;
 
     // 初始化
     @FXML
@@ -32,7 +30,6 @@ public class ConfigP2p {
                 JSONObject jsonObject = new JSONObject(map);
                 token.setText(String.valueOf(jsonObject.getJSONObject("network").get("Token")));
                 biaoshi.setText(String.valueOf(jsonObject.getJSONObject("network").get("Node")));
-                tcpdk.setText(String.valueOf(jsonObject.getJSONObject("network").get("TCPPort")));
             }
         });
     }
@@ -49,7 +46,6 @@ public class ConfigP2p {
         JSONObject jsonObject = new JSONObject(map);
         // 因为token太长所以使用BigInteger
         jsonObject.getJSONObject("network").put("Token", new BigInteger(token.getText()));
-        jsonObject.getJSONObject("network").put("TCPPort", Integer.parseInt(tcpdk.getText()));
         jsonObject.getJSONObject("network").put("Node", biaoshi.getText());
         // 更新数据
         if (new IOJson().inputP2P(map) == 1) {

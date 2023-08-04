@@ -5,8 +5,10 @@ package MSHFT;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,12 +23,14 @@ import javafx.stage.StageStyle;
 import java.io.*;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 public class SettingServer {
-    @FXML   // MOD、IP地址、端口
-    private TextField MOD, IP, port;
+    @FXML   // MOD、IP地址、端口、唯一标识
+    private TextField MOD, IP, port, biaoshi;
     @FXML   // 提示窗口
     private TextArea textArea;
     @FXML   // 删除按钮
@@ -57,6 +61,7 @@ public class SettingServer {
                 Mod();
                 Ip();
                 Port();
+                Biaoshi();
             }
         });
     }
@@ -93,6 +98,14 @@ public class SettingServer {
         } catch (IOException e) {
             port.setText("无文件");
         }
+    }
+    // 获取唯一标识
+    private void Biaoshi() {
+        Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
+        });
+        if (new File("./openp2p/config.json").exists())
+            biaoshi.setText(String.valueOf(new JSONObject(map).getJSONObject("network").get("Node")));
+        else biaoshi.setText("没有文件");
     }
 
     // 服务器输入信息
@@ -225,4 +238,18 @@ public class SettingServer {
         }
     }
 
+    // 启动P2P房间
+    public void P2P() throws IOException {
+        if (/*!onOff*/true) {
+            Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
+            });
+            // 判断list是否为空，如果不空的话，则变为null
+            if (map.get("apps") != null) {
+                map.put("apps", null);
+                new IOJson().inputP2P(map);
+            }
+            // 打开窗口
+            Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+        }
+    }
 }

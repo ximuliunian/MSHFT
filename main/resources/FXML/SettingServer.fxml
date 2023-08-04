@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -27,6 +28,14 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#P2P" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="创建并启动房间">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
                         <Button mnemonicParsing="false" onAction="#ServerProperties" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="配置信息">
                             <font>
                                 <Font size="17.0" />
@@ -89,6 +98,16 @@
                                 <TextField fx:id="IP" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
                             </children>
                         </HBox>
+                  <HBox prefHeight="35.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0" style="-fx-text-fill: FFFFFF;" text="标识：">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="biaoshi" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
+                     </children>
+                  </HBox>
                         <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="刷新">
                             <font>
                                 <Font size="17.0" />

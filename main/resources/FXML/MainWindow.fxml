@@ -53,15 +53,15 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作">
+                  <Button fx:id="get" mnemonicParsing="false" onAction="#GoGame" opacity="0.8" prefWidth="200.0" text="进入联机房间">
                      <HBox.margin>
                         <Insets left="50.0" />
-                     </HBox.margin></Button>
-                  <Button mnemonicParsing="false" onAction="#GoGame" fx:id="get" opacity="0.8" prefWidth="200.0" text="进入联机房间">
-                     <HBox.margin>
-                        <Insets left="50.0" right="50.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作">
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />

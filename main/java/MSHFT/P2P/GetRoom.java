@@ -11,14 +11,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class GetRoom {
     @FXML
     private TextField biaoshi, tcpdk, bendi;
-
+    Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
+    });
+    List<Object> list = (List<Object>) map.get("apps");
 
     // 初始化
     public void initialize() {
@@ -26,25 +27,7 @@ public class GetRoom {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
-                });
-                List<Object> list = (List<Object>) map.get("apps");
-                // 判断list是否为空，如果是空的话，则新创建JSON对象
-                if (list == null) {
-                    List<Object> list1 = new ArrayList<>();
-                    Apps apps = new Apps();
-                    apps.setAppName("qwq");
-                    apps.setProtocol("tcp");
-                    apps.setSrcPort(0);
-                    apps.setPeerNode("");
-                    apps.setDstPort(0);
-                    apps.setDstHost("localhost");
-                    apps.setPeerUser("");
-                    apps.setEnabled(1);
-                    list1.add(apps);
-                    map.put("apps", list1);
-                    new IOJson().inputP2P(map);
-                }
+
                 // 显示到屏幕上
                 JSONObject jsonObject = new JSONObject((Map<String, Object>) list.get(0));
                 biaoshi.setText(String.valueOf(jsonObject.get("PeerNode")));
@@ -60,9 +43,7 @@ public class GetRoom {
 
     // 开始连接
     public void texta() throws IOException {
-        Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
-        });
-        List<Object> list = (List<Object>) map.get("apps");
+
         JSONObject jsonObject = new JSONObject((Map<String, Object>) list.get(0));
         jsonObject.put("PeerNode", biaoshi.getText());
         jsonObject.put("DstPort", Integer.parseInt(tcpdk.getText()));
