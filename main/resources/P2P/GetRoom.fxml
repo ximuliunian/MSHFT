@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="307.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.P2P.GetRoom">
+   <children>
+      <HBox layoutX="27.0" layoutY="21.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="100.0" text="唯一标识：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="biaoshi" />
+         </children>
+      </HBox>
+      <HBox layoutX="27.0" layoutY="74.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="100.0" text="对方端口：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tcpdk" />
+         </children>
+      </HBox>
+      <HBox layoutX="27.0" layoutY="126.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="100.0" text="本地端口：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bendi" />
+         </children>
+      </HBox>
+      <Button layoutX="100.0" layoutY="199.0" mnemonicParsing="false" onAction="#texta" prefHeight="30.0" prefWidth="156.0" text="开始连接" fx:id="lianjie"/>
+      <Label layoutX="51.0" layoutY="266.0" text="温馨提示：请先确定房主已经开启房间" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

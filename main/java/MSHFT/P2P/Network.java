@@ -1,14 +1,25 @@
 package MSHFT.P2P;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Network {
+    @JSONField(name = "User")
     private String User;
+    @JSONField(name = "UDPPort1")
     private int UDPPort1;
+    @JSONField(name = "Node")
     private String Node;
+    @JSONField(name = "ShareBandwidth")
     private int ShareBandwidth;
+    @JSONField(name = "Token")
     private int Token;
+    @JSONField(name = "UDPPort2")
     private int UDPPort2;
+    @JSONField(name = "ServerHost")
     private String ServerHost;
+    @JSONField(name = "ServerPort")
     private int ServerPort;
+    @JSONField(name = "TCPPort")
     private int TCPPort;
 
     public String getUser() {

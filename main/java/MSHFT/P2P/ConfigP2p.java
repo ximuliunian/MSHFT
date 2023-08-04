@@ -30,9 +30,9 @@ public class ConfigP2p {
                 Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
                 });
                 JSONObject jsonObject = new JSONObject(map);
-                token.setText(String.valueOf(jsonObject.getJSONObject("network").get("token")));
-                biaoshi.setText(String.valueOf(jsonObject.getJSONObject("network").get("node")));
-                tcpdk.setText(String.valueOf(jsonObject.getJSONObject("network").get("tCPPort")));
+                token.setText(String.valueOf(jsonObject.getJSONObject("network").get("Token")));
+                biaoshi.setText(String.valueOf(jsonObject.getJSONObject("network").get("Node")));
+                tcpdk.setText(String.valueOf(jsonObject.getJSONObject("network").get("TCPPort")));
             }
         });
     }
@@ -48,9 +48,9 @@ public class ConfigP2p {
         // 输入新数据
         JSONObject jsonObject = new JSONObject(map);
         // 因为token太长所以使用BigInteger
-        jsonObject.getJSONObject("network").put("token", new BigInteger(token.getText()));
-        jsonObject.getJSONObject("network").put("tCPPort", Integer.parseInt(tcpdk.getText()));
-        jsonObject.getJSONObject("network").put("node", biaoshi.getText());
+        jsonObject.getJSONObject("network").put("Token", new BigInteger(token.getText()));
+        jsonObject.getJSONObject("network").put("TCPPort", Integer.parseInt(tcpdk.getText()));
+        jsonObject.getJSONObject("network").put("Node", biaoshi.getText());
         // 更新数据
         if (new IOJson().inputP2P(map) == 1) {
             Stage stage = (Stage) yes.getScene().getWindow();

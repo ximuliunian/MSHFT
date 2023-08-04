@@ -12,6 +12,6 @@
          </font>
       </TextArea>
       <Button layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#date" prefHeight="40.0" prefWidth="150.0" text="更改信息" />
-      <Button layoutX="400.0" layoutY="314.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="进入房间" />
+      <Button layoutX="400.0" fx:id="get" layoutY="314.0" mnemonicParsing="false" onAction="#getRoom" prefHeight="40.0" prefWidth="150.0" text="进入房间" />
    </children>
 </AnchorPane>

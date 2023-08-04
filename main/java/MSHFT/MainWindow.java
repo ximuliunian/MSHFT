@@ -175,7 +175,10 @@ public class MainWindow {
         stage.show();
     }
 
-    // 进入P2P联机页面
+    @FXML
+    private Button get;
+
+    // 进入P2P联机页面并关闭当前页面
     public void GoGame(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/P2P/GoGame.fxml"))));
@@ -184,6 +187,8 @@ public class MainWindow {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.show();
+        Stage cl = (Stage) get.getScene().getWindow();
+        cl.close();
     }
 
     // 软件详情信息
