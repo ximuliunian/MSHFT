@@ -16,7 +16,7 @@ public class IOJson {
         String json = null;
         try {
             FileReader f = new FileReader(map);
-            Reader reader = new InputStreamReader(Files.newInputStream(Paths.get(map)));
+            Reader reader = new InputStreamReader(Files.newInputStream(Paths.get(map)),"UTF-8");
             int ch = 0;
             StringBuffer sb = new StringBuffer();
             while ((ch = reader.read()) != -1) {
