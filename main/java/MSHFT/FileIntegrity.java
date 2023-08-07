@@ -1,4 +1,5 @@
 package MSHFT;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
@@ -24,6 +25,8 @@ public class FileIntegrity {
     private TextField v18;
     @FXML
     private TextField vn;
+    @FXML
+    private TextField P2P;
 
     // 判断版本配置文件
     void ErrorVM() throws InterruptedException {
@@ -53,7 +56,7 @@ public class FileIntegrity {
     }
 
     // 创建配置文件
-     Boolean creationCF() {
+    Boolean creationCF() {
         Map<String, WorldData> map = new HashMap<>();
         return new IOJson().initJsonCf(map) == 1;
     }
@@ -162,6 +165,10 @@ public class FileIntegrity {
         // 判断文件夹 - 1.18.2
         File v1_18 = new File("1.18.2");
         if (!v1_18.exists()) Mkdir("1.18.2");
+
+        // 判断文件夹 - openP2P
+        File openP2P = new File("openP2P");
+        if (!openP2P.exists()) Mkdir("openP2P");
     }
 
     // 生成指定文件夹
@@ -190,6 +197,17 @@ public class FileIntegrity {
                             Thread.sleep(1000);
                             ErrorVM();
 
+                            // 检查联机文件是否缺失是否缺失
+                            textArea.appendText("\n检查联机文件是否正常");
+                            if(new File("./openp2p/openp2p.exe").exists()){
+                                textArea.appendText("\n联机文件正常");
+                                P2P.setText("正常");
+                            }else {
+                                textArea.appendText("\n联机文件缺失");
+                                P2P.setText("缺失");
+                            }
+                            Thread.sleep(1000);
+
                             // 检查版本隔离文件夹是否存在
                             textArea.appendText("\n检查文件夹是否正常");
                             Thread.sleep(1000);
@@ -200,8 +218,6 @@ public class FileIntegrity {
                             textArea.appendText("\n检查配置核心文件是否正常");
                             Thread.sleep(1000);
                             ErrorHx();
-                            Thread.sleep(1000);
-
                             textArea.appendText("\n检查完成……");
                         } catch (InterruptedException ex) {
                             textArea.appendText("\n出错了");

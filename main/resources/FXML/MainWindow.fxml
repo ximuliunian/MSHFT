@@ -8,67 +8,81 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.MainWindow">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0"
+            style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.MainWindow">
     <children>
-      <VBox layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
-         <children>
+        <VBox layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
+            <children>
                 <HBox prefHeight="50.0" prefWidth="900.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#newSer" opacity="0.8" prefHeight="50.0" prefWidth="300.0" text="创建服务器">
+                        <Button mnemonicParsing="false" onAction="#newSer" opacity="0.8" prefHeight="50.0"
+                                prefWidth="300.0" text="创建服务器">
                             <HBox.margin>
-                                <Insets right="300.0" />
+                                <Insets right="300.0"/>
                             </HBox.margin>
                             <font>
-                                <Font size="20.0" />
+                                <Font size="20.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#cFile" opacity="0.8" prefHeight="50.0" prefWidth="300.0" text="文件完整性">
+                        <Button mnemonicParsing="false" onAction="#cFile" opacity="0.8" prefHeight="50.0"
+                                prefWidth="300.0" text="文件完整性">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="20.0"/>
                             </font>
                         </Button>
                     </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
                 </HBox>
                 <TableView fx:id="tableView" opacity="0.8" prefHeight="500.0" prefWidth="900.0">
                     <columns>
-                        <TableColumn fx:id="worldName" prefWidth="150.0" resizable="false" style="-fx-alignment: CENTER;" text="服务器名" />
-                        <TableColumn fx:id="briefIntroduction" prefWidth="300.0" resizable="false" text="简介" />
-                        <TableColumn fx:id="startDate" prefWidth="170.0" resizable="false" style="-fx-alignment: CENTER;" text="创建日期" />
-                        <TableColumn fx:id="tailEnd" prefWidth="170.0" resizable="false" style="-fx-alignment: CENTER;" text="最后运行日期" />
-                        <TableColumn fx:id="version" prefWidth="90" resizable="false" style="-fx-alignment: CENTER;" text="版本" />
+                        <TableColumn fx:id="worldName" prefWidth="150.0" resizable="false"
+                                     style="-fx-alignment: CENTER;" text="服务器名"/>
+                        <TableColumn fx:id="briefIntroduction" prefWidth="300.0" resizable="false" text="简介"/>
+                        <TableColumn fx:id="startDate" prefWidth="170.0" resizable="false"
+                                     style="-fx-alignment: CENTER;" text="创建日期"/>
+                        <TableColumn fx:id="tailEnd" prefWidth="170.0" resizable="false" style="-fx-alignment: CENTER;"
+                                     text="最后运行日期"/>
+                        <TableColumn fx:id="version" prefWidth="90" resizable="false" style="-fx-alignment: CENTER;"
+                                     text="版本"/>
                     </columns>
                 </TableView>
-            <HBox prefHeight="30.0" prefWidth="900.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#Change" opacity="0.8" prefWidth="200.0" text="更改信息">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefWidth="200.0" text="刷新表单">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="get" mnemonicParsing="false" onAction="#GoGame" opacity="0.8" prefWidth="200.0" text="进入联机房间">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0" text="服务器操作">
-                     <HBox.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </HBox.margin></Button>
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
-      </VBox>
-      <Button layoutX="950.0" mnemonicParsing="false" onAction="#about" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="关于" />
+                <HBox prefHeight="30.0" prefWidth="900.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#Change" opacity="0.8" prefWidth="200.0"
+                                text="更改信息">
+                            <HBox.margin>
+                                <Insets left="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefWidth="200.0"
+                                text="刷新表单">
+                            <HBox.margin>
+                                <Insets left="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="get" mnemonicParsing="false" onAction="#GoGame" opacity="0.8" prefWidth="200.0"
+                                text="进入联机房间">
+                            <HBox.margin>
+                                <Insets left="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="SC" mnemonicParsing="false" onAction="#SerCon" opacity="0.8" prefWidth="200.0"
+                                text="服务器操作">
+                            <HBox.margin>
+                                <Insets left="50.0" right="50.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+        <Button layoutX="950.0" mnemonicParsing="false" onAction="#about"
+                style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="关于"/>
     </children>
 </AnchorPane>

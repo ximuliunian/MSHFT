@@ -15,13 +15,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 
 public class MainWindow {
@@ -43,26 +41,16 @@ public class MainWindow {
         tailEnd.setCellValueFactory(new PropertyValueFactory<>("tailEnd"));
         version.setCellValueFactory(new PropertyValueFactory<>("version"));
 
-        // 在根目录创建P2P联机文件
+        // 在根目录创建P2P联机文件夹
         File file = new File("openp2p");
-        // 判断openp2p这个文件夹是否够存在，不存在创建
-        if (!file.exists()) {
-            file.mkdir();
-            File file1 = new File(MainWindow.class.getClassLoader().getResource("P2P/openp2p.exe").getPath());
-            Files.copy(file1.toPath(), new File(file + "/openp2p.exe").toPath());
-        }
-
-        // 判断openp2p.exe这个文件是否够存在，不存在创建
-        if (!new File(file + "/openp2p.exe").exists()) {
-            File file1 = new File(MainWindow.class.getClassLoader().getResource("P2P/openp2p.exe").getPath());
-            Files.copy(file1.toPath(), new File(file + "/openp2p.exe").toPath());
-        }
-
-        // 判断config.json这个文件是否够存在，不存在创建
-        if (!new File(file + "/config.json").exists()) {
-            new File(file + "/config.json").createNewFile();
-            new IOJson().initP2P();
-        }
+        if (!file.exists()) file.mkdir();
+        // 首先判断联机文件是否存在
+        if (new File(file + "/openp2p.exe").exists())
+            // 判断config.json这个文件是否够存在，不存在创建
+            if (!new File(file + "/config.json").exists()) {
+                new File(file + "/config.json").createNewFile();
+                new IOJson().initP2P();
+            }
 
         // 禁止拖拽列
         tableView.getColumns().addListener(new ListChangeListener() {
@@ -78,7 +66,7 @@ public class MainWindow {
     }
 
     // 从json文件中读取
-    private List<WorldData> WD() throws InterruptedException {
+    private List<WorldData> WD() {
         // 先判断json文件是否存在不存在创建配置文件
         if (!new File("versionManagement.json").exists()) new FileIntegrity().creationCF();
 
@@ -102,12 +90,6 @@ public class MainWindow {
     public void SerCon() throws IOException {
         // 获取点击的行
         WorldData data = tableView.getSelectionModel().getSelectedItem();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SettingServer.fxml"))));
-        stage.setTitle("服务器操作");
-        stage.getIcons().add(new Image("img/favicon.png"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
         if (data != null) {
             Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson("versionManagement.json"), new TypeReference<Map<String, WorldData>>() {
             });
@@ -117,62 +99,29 @@ public class MainWindow {
                     new SettingServer().setFileServerWD(entry.getValue().getVersion(), entry.getKey());
                 }
             }
-            stage.show();
+            Open("/FXML/SettingServer.fxml", "服务器操作");
             Stage col = (Stage) SC.getScene().getWindow();
             col.close();
         }
     }
 
-    // 获取JSON对象名称
-    private String FileServer() {
-        // 确认选中了哪条数据
-        WorldData data = tableView.getSelectionModel().getSelectedItem();
-        Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson("versionManagement.json"), new TypeReference<Map<String, WorldData>>() {
-        });
-        for (Map.Entry<String, WorldData> entry : map.entrySet()) {
-            // 找到跟值一样的数据
-            if (entry.getValue().getStartDate().equals(data.getStartDate())) {
-                return entry.getValue().getVersion() + "/" + entry.getKey();
-            }
-        }
-        return null;
-    }
-
     // 打开更改信息页面
     public void Change() throws IOException {
         WorldData data = tableView.getSelectionModel().getSelectedItem();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/ChangeTo.fxml"))));
-        stage.setTitle("更改信息");
-        stage.getIcons().add(new Image("img/favicon.png"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
         if (data != null) {
             new ChangeTo().ChTo(data);
-            stage.show();
+            Open("/FXML/ChangeTo.fxml", "更改信息");
         }
     }
 
     // 点击打开新建服务器页面
     public void newSer() throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/NewServer.fxml"))));
-        stage.setTitle("新建服务器");
-        stage.getIcons().add(new Image("img/favicon.png"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        stage.show();
+        Open("/FXML/NewServer.fxml", "新建服务器");
     }
 
     // 点击打开文件完整性
     public void cFile() throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/FileIntegrity.fxml"))));
-        stage.setTitle("文件完整性");
-        stage.getIcons().add(new Image("img/favicon.png"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        stage.show();
+        Open("/FXML/FileIntegrity.fxml", "文件完整性");
     }
 
     @FXML
@@ -180,22 +129,21 @@ public class MainWindow {
 
     // 进入P2P联机页面并关闭当前页面
     public void GoGame(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/P2P/GoGame.fxml"))));
-        stage.setTitle("进入P2P联机页面（进入房间）");
-        stage.getIcons().add(new Image("img/favicon.png"));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        stage.show();
+        Open("/P2P/GoGame.fxml", "进入P2P联机页面（进入房间）");
         Stage cl = (Stage) get.getScene().getWindow();
         cl.close();
     }
 
     // 软件详情信息
     public void about(ActionEvent actionEvent) throws IOException {
+        Open("/FXML/About.fxml", "关于 MSHFT");
+    }
+
+    // 打开一个当在当前窗口打开一个新窗口时，除了新窗口之外，其余窗口不得使用/不能改变窗口大小
+    public void Open(String file, String title) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/About.fxml"))));
-        stage.setTitle("关于 MSHFT");
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(file))));
+        stage.setTitle(title);
         stage.getIcons().add(new Image("img/favicon.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);

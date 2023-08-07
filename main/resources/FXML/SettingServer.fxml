@@ -6,137 +6,162 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.SettingServer">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+      prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.SettingServer">
     <children>
         <HBox layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
             <children>
                 <VBox prefHeight="200.0" prefWidth="250.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#Open" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="开启">
+                        <Button mnemonicParsing="false" onAction="#Open" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="开启">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </VBox.margin>
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#Close" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="关闭">
+                        <Button mnemonicParsing="false" onAction="#Close" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="关闭">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </VBox.margin>
                         </Button>
-                  <Button mnemonicParsing="false" onAction="#P2P" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="创建并启动房间">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                        <Button mnemonicParsing="false" onAction="#ServerProperties" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="配置信息">
+                        <Button mnemonicParsing="false" onAction="#P2P" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="创建并启动房间">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#AddMod" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="添加MOD">
+                        <Button mnemonicParsing="false" onAction="#ServerProperties" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="配置信息">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#AddWorld" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="打开世界文件夹">
+                        <Button mnemonicParsing="false" onAction="#AddMod" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="添加MOD">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="del" mnemonicParsing="false" onAction="#Del" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="删除">
+                        <Button mnemonicParsing="false" onAction="#AddWorld" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="打开世界文件夹">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets bottom="90.0" />
+                                <Insets bottom="10.0"/>
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="del" mnemonicParsing="false" onAction="#Del" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="删除">
+                            <font>
+                                <Font size="17.0"/>
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="90.0"/>
                             </VBox.margin>
                         </Button>
                         <HBox prefHeight="35.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0" style="-fx-text-fill: FFFFFF;" text="MOD：">
+                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0"
+                                       style="-fx-text-fill: FFFFFF;" text="MOD：">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font size="13.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="MOD" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="MOD" editable="false" opacity="0.8" prefHeight="35.0"
+                                           prefWidth="140.0"
+                                           style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;"/>
                             </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0" style="-fx-text-fill: FFFFFF;" text="端口：">
+                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0"
+                                       style="-fx-text-fill: FFFFFF;" text="端口：">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font size="13.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="port" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="port" editable="false" opacity="0.8" prefHeight="35.0"
+                                           prefWidth="140.0"
+                                           style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;"/>
                             </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0" style="-fx-text-fill: FFFFFF;" text="本机IP：">
+                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0"
+                                       style="-fx-text-fill: FFFFFF;" text="本机IP：">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font size="13.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="IP" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
+                                <TextField fx:id="IP" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0"
+                                           style=" -fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;"/>
                             </children>
                         </HBox>
-                  <HBox prefHeight="35.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0" style="-fx-text-fill: FFFFFF;" text="标识：">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="biaoshi" editable="false" opacity="0.8" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;" />
-                     </children>
-                  </HBox>
-                        <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="刷新">
+                        <HBox prefHeight="35.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" opacity="0.8" prefHeight="35.0" prefWidth="60.0"
+                                       style="-fx-text-fill: FFFFFF;" text="标识：">
+                                    <font>
+                                        <Font size="13.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="biaoshi" editable="false" opacity="0.8" prefHeight="35.0"
+                                           prefWidth="140.0"
+                                           style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF;"/>
+                            </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#initialize" opacity="0.8" prefHeight="35.0"
+                                prefWidth="200.0" text="刷新">
                             <font>
-                                <Font size="17.0" />
+                                <Font size="17.0"/>
                             </font>
                         </Button>
                     </children>
                     <padding>
-                        <Insets bottom="50.0" right="50.0" top="50.0" />
+                        <Insets bottom="50.0" right="50.0" top="50.0"/>
                     </padding>
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="650.0">
                     <children>
-                        <TextArea fx:id="textArea" editable="false" opacity="0.8" prefHeight="550.0" prefWidth="250.0" style="-fx-background-insets: 0; -fx-background-color: black;">
-                     <font>
-                        <Font size="13.0" />
-                     </font></TextArea>
+                        <TextArea fx:id="textArea" editable="false" opacity="0.8" prefHeight="550.0" prefWidth="250.0"
+                                  style="-fx-background-insets: 0; -fx-background-color: black;">
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </TextArea>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="instruction" opacity="0.8" prefHeight="50.0" prefWidth="570.0" promptText="请输入指令">
+                                <TextField fx:id="instruction" opacity="0.8" prefHeight="50.0" prefWidth="570.0"
+                                           promptText="请输入指令">
                                     <font>
-                                        <Font size="20.0" />
+                                        <Font size="20.0"/>
                                     </font>
                                     <padding>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </padding>
                                 </TextField>
-                                <Button mnemonicParsing="false" onAction="#submit" opacity="0.8" prefHeight="50.0" prefWidth="80.0" text="提交">
+                                <Button mnemonicParsing="false" onAction="#submit" opacity="0.8" prefHeight="50.0"
+                                        prefWidth="80.0" text="提交">
                                     <font>
-                                        <Font size="20.0" />
+                                        <Font size="20.0"/>
                                     </font>
                                 </Button>
                             </children>
@@ -145,6 +170,7 @@
                 </VBox>
             </children>
         </HBox>
-      <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction="#ReturnMain" opacity="0.8" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="&lt;- 返回主页" />
+        <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction="#ReturnMain" opacity="0.8"
+                style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="&lt;- 返回主页"/>
     </children>
 </Pane>

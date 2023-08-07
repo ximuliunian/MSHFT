@@ -1,4 +1,5 @@
 package MSHFT;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -236,7 +237,7 @@ public class SerProperties {
                 properties.setProperty("gamemode", "3");
             else properties.setProperty("gamemode", "spectator");
         }
-        
+
         // 游戏难度
         if (difficulty.getValue().equals("和平")) {
             if (properties.getProperty("difficulty").equals("0") || properties.getProperty("difficulty").equals("1") || properties.getProperty("difficulty").equals("2") || properties.getProperty("difficulty").equals("3"))

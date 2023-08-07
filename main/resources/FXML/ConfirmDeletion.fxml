@@ -14,7 +14,7 @@
                 <Font name="System Bold" size="30.0"/>
             </font>
         </Label>
-        <Button layoutX="71.0"  onAction="#Yes" layoutY="126.0" mnemonicParsing="false" text="确认"/>
+        <Button layoutX="71.0" onAction="#Yes" layoutY="126.0" mnemonicParsing="false" text="确认"/>
         <Button layoutX="234.0" fx:id="cNo" onAction="#No" layoutY="126.0" mnemonicParsing="false" text="取消"/>
     </children>
 </AnchorPane>

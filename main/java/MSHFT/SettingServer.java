@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,8 +22,6 @@ import javafx.stage.StageStyle;
 import java.io.*;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -82,7 +79,7 @@ public class SettingServer {
     private void Ip() {
         InetAddress ia = null;
         try {
-            ia = ia.getLocalHost();
+            ia = InetAddress.getLocalHost();
             IP.setText(ia.getHostAddress());
         } catch (Exception e) {
             IP.setText("失败");
@@ -99,6 +96,7 @@ public class SettingServer {
             port.setText("无文件");
         }
     }
+
     // 获取唯一标识
     private void Biaoshi() {
         Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {

@@ -1,4 +1,5 @@
 package MSHFT;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
