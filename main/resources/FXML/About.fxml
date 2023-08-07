@@ -34,7 +34,7 @@
                 <Label prefHeight="20.0" prefWidth="350.0" text="语言：Java"/>
                 <Label prefHeight="20.0" prefWidth="350.0" text="GUI：JavaFx"/>
                 <Label prefHeight="20.0" prefWidth="350.0" text="JSON：FastJson"/>
-                <Label prefHeight="20.0" prefWidth="350.0" text="软件版本：0.3"/>
+                <Label prefHeight="20.0" prefWidth="350.0" text="软件版本：0.5"/>
                 <Label prefHeight="20.0" prefWidth="350.0" text="核心下载地：catmc.org"/>
                 <Label prefHeight="20.0" prefWidth="350.0" text="核心开源地：github.com/Luohuayu/CatServer"/>
                 <Label prefHeight="20.0" prefWidth="350.0" text="软件不具有自动更新功能">
