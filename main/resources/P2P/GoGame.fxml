@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.P2P.GoGame">
     <children>
-        <TextArea editable="false" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="500.0" text="本联机方式是基于开源项目openp2p&#10;项目开源地：https://github.com/openp2p-cn/openp2p&#10;联机原理是基于P2P连接&#10;如要使用本模块，请先下载openp2p.exe文件&#10;下载地址：mshft.ximuliunian.top">
+        <TextArea editable="false" layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="500.0" text="本联机方式是基于开源项目openp2p&#10;项目开源地：https://github.com/openp2p-cn/openp2p&#10;联机原理是基于P2P连接">
             <font>
                 <Font size="17.0" />
             </font>

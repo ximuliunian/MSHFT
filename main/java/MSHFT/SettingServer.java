@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -159,6 +160,10 @@ public class SettingServer {
                     e.printStackTrace();
                 }
             }).start();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("已经开启了");
+            alert.show();
         }
 
     }
@@ -172,27 +177,50 @@ public class SettingServer {
             output.flush();
             // 开启开关
             onOff = true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("已经关闭了");
+            alert.show();
         }
     }
 
     // 打开服务器配置页
     public void ServerProperties() throws IOException {
-        new SerProperties().PRO(ver + "/" + FileServer + "/server.properties");
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SerProperties.fxml"))));
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        if (new File(ver + "/" + FileServer + "/server.properties").exists()) {
+            new SerProperties().PRO(ver + "/" + FileServer + "/server.properties");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/SerProperties.fxml"))));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("没有找到该文件");
+            alert.show();
+        }
+
     }
 
     // 添加MOD
     public void AddMod() throws IOException {
-        Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer mods");
+        if (new File(ver + "/" + FileServer + "mods").exists()) {
+            Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer mods");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("没有找到该文件夹");
+            alert.show();
+        }
     }
 
     // 打开世界文件夹
     public void AddWorld() throws IOException {
-        Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer world");
+        if (new File(ver + "/" + FileServer + "world").exists()) {
+            Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer world");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("没有找到该文件夹");
+            alert.show();
+        }
     }
 
     // 删除版本
@@ -207,6 +235,10 @@ public class SettingServer {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("请先关闭服务器");
+            alert.show();
         }
     }
 
@@ -223,6 +255,10 @@ public class SettingServer {
             stage.show();
             Stage col = (Stage) del.getScene().getWindow();
             col.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("请先关闭服务器");
+            alert.show();
         }
     }
 
@@ -233,21 +269,35 @@ public class SettingServer {
             output.write((instruction.getText() + "\n").getBytes(charset));
             output.flush();
             instruction.setText("");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("请先开启服务器");
+            alert.show();
         }
     }
 
     // 启动P2P房间
     public void P2P() throws IOException {
-        if (/*!onOff*/true) {
-            Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
-            });
-            // 判断list是否为空，如果不空的话，则变为null
-            if (map.get("apps") != null) {
-                map.put("apps", null);
-                new IOJson().inputP2P(map);
+        if (new File("./openp2p/openp2p.exe").exists()) {
+            if (!onOff) {
+                Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
+                });
+                // 判断list是否为空，如果不空的话，则变为null
+                if (map.get("apps") != null) {
+                    map.put("apps", null);
+                    new IOJson().inputP2P(map);
+                }
+                // 打开窗口
+                Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("请先启动服务器");
+                alert.show();
             }
-            // 打开窗口
-            Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("没有联机文件\n如要使用本模块，请先下载openp2p.exe文件\n下载地址：https://github.com/openp2p-cn/openp2p/releases/latest");
+            alert.show();
         }
     }
 }

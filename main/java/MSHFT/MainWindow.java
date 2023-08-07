@@ -102,6 +102,10 @@ public class MainWindow {
             Open("/FXML/SettingServer.fxml", "服务器操作");
             Stage col = (Stage) SC.getScene().getWindow();
             col.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("请先选择服务器");
+            alert.show();
         }
     }
 
@@ -111,6 +115,10 @@ public class MainWindow {
         if (data != null) {
             new ChangeTo().ChTo(data);
             Open("/FXML/ChangeTo.fxml", "更改信息");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("请先选择服务器");
+            alert.show();
         }
     }
 
@@ -129,9 +137,15 @@ public class MainWindow {
 
     // 进入P2P联机页面并关闭当前页面
     public void GoGame(ActionEvent actionEvent) throws IOException {
-        Open("/P2P/GoGame.fxml", "进入P2P联机页面（进入房间）");
-        Stage cl = (Stage) get.getScene().getWindow();
-        cl.close();
+        if (new File("./openp2p/openp2p.exe").exists()) {
+            Open("/P2P/GoGame.fxml", "进入P2P联机页面（进入房间）");
+            Stage cl = (Stage) get.getScene().getWindow();
+            cl.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("没有联机文件\n如要使用本模块，请先下载openp2p.exe文件\n下载地址：https://github.com/openp2p-cn/openp2p/releases/latest");
+            alert.show();
+        }
     }
 
     // 软件详情信息
