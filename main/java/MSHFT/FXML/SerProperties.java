@@ -1,4 +1,4 @@
-package MSHFT;
+package MSHFT.FXML;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

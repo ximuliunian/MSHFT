@@ -1,16 +1,22 @@
 package MSHFT.P2P;
 
 import MSHFT.IOJson;
+import MSHFT.SystemPrint;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +45,7 @@ public class GetRoom {
     }
 
     @FXML
-    private Button lianjie;
+    private TextArea textArea;
 
     // 开始连接
     public void texta() throws IOException {
@@ -50,9 +56,11 @@ public class GetRoom {
         jsonObject.put("SrcPort", Integer.parseInt(bendi.getText()));
         // 更新数据
         new IOJson().inputP2P(map);
-        // 打开窗口
-        Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
-        Stage stage = (Stage) lianjie.getScene().getWindow();
-        stage.close();
+
+        // 把输出到控制台的内容输出到TextArea
+        new SystemPrint().outPrint(textArea);
+        Process process = Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+        Charset charset = Charset.forName("gbk");
+        new SystemPrint().cmdPrint(process, charset);
     }
 }

@@ -1,9 +1,12 @@
-package MSHFT;
+package MSHFT.FXML;
 /*
  * 服务器详细操作
  * */
 
 
+import MSHFT.IOJson;
+import MSHFT.SystemPrint;
+import MSHFT.WorldData;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -129,37 +132,14 @@ public class SettingServer {
                 }
             }
             // 把输出到控制台的内容输出到TextArea
-            System.setOut(new PrintStream(new OutputStream() {
-                @Override
-                public void write(int b) throws IOException {
-                    String text = String.valueOf((char) b);
-                    Platform.runLater(() -> {
-                        textArea.appendText(text);
-                    });
-                }
-
-                @Override
-                public void write(byte[] b, int off, int len) throws IOException {
-                    String s = new String(b, off, len);
-                    Platform.runLater(() -> textArea.appendText(s));
-                }
-            }, true));
-            System.setErr(System.out);
-            // 打开窗口
+            new SystemPrint().outPrint(textArea);
+            // 清空屏幕打开窗口
+            textArea.setText("");
             Process process = Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && java -jar CatServer-" + ver + ".jar");
             this.process = process;
             Charset charset = Charset.forName("gbk");
             this.charset = charset;
-            new Thread(() -> {
-                try (InputStreamReader reader = new InputStreamReader(process.getInputStream(), charset)) {
-                    int read;
-                    while ((read = reader.read()) != -1) {
-                        System.out.print((char) read);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            new SystemPrint().cmdPrint(process, charset);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("已经开启了");
@@ -203,7 +183,7 @@ public class SettingServer {
 
     // 添加MOD
     public void AddMod() throws IOException {
-        if (new File(ver + "/" + FileServer + "mods").exists()) {
+        if (new File(ver + "/" + FileServer + "/mods").exists()) {
             Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer mods");
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -214,7 +194,7 @@ public class SettingServer {
 
     // 打开世界文件夹
     public void AddWorld() throws IOException {
-        if (new File(ver + "/" + FileServer + "world").exists()) {
+        if (new File(ver + "/" + FileServer + "/world").exists()) {
             Runtime.getRuntime().exec("cmd /c cd /d " + ver + "/" + FileServer + " && explorer world");
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -276,6 +256,9 @@ public class SettingServer {
         }
     }
 
+    @FXML
+    private TextArea textAreaP2P;
+
     // 启动P2P房间
     public void P2P() throws IOException {
         if (new File("./openp2p/openp2p.exe").exists()) {
@@ -288,7 +271,11 @@ public class SettingServer {
                     new IOJson().inputP2P(map);
                 }
                 // 打开窗口
-                Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+                textAreaP2P.setText("");
+                new SystemPrint().outPrint(textAreaP2P);
+                Process processp2p = Runtime.getRuntime().exec("cmd /c cd /d openp2p && openp2p.exe");
+                Charset charsetp2p = Charset.forName("gbk");
+                new SystemPrint().cmdPrint(processp2p, charsetp2p);
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("请先启动服务器");

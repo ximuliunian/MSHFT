@@ -16,7 +16,7 @@ public class IOJson {
         String json = null;
         try {
             FileReader f = new FileReader(map);
-            Reader reader = new InputStreamReader(Files.newInputStream(Paths.get(map)),"UTF-8");
+            Reader reader = new InputStreamReader(Files.newInputStream(Paths.get(map)), "UTF-8");
             int ch = 0;
             StringBuffer sb = new StringBuffer();
             while ((ch = reader.read()) != -1) {
@@ -44,7 +44,7 @@ public class IOJson {
     }
 
     // P2P初始化
-    int initP2P() {
+    public int initP2P() {
         // 创建p2p的json数据
         Network network = new Network();
         network.setToken(0);
@@ -75,14 +75,14 @@ public class IOJson {
     }
 
     // 初始化版本配置文件
-    int initJsonCf(Map<String, WorldData> map) {
+    public int initJsonCf(Map<String, WorldData> map) {
         String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         File newvn = new File("versionManagement.json");
         return iptJson(json, newvn);
     }
 
     // 正常输入
-    int inputJsonCF(Map<String, WorldData> map) {
+    public int inputJsonCF(Map<String, WorldData> map) {
         File newvn = new File("versionManagement.json");
         String json = JSON.toJSONString(map, SerializerFeature.PrettyFormat);
         return iptJson(json, newvn);

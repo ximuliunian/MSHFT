@@ -1,4 +1,4 @@
-package MSHFT;
+package MSHFT.FXML;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
