@@ -145,7 +145,6 @@ public class SettingServer {
             alert.setContentText("已经开启了");
             alert.show();
         }
-
     }
 
     // 关闭服务器

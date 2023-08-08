@@ -61,6 +61,10 @@ nav {
     background-color: #00000025;
 }
 
+a {
+    color: rgb(43, 226, 189);
+}
+
 nav a {
     text-decoration: none;
     color: rgb(97, 239, 237);
@@ -114,7 +118,7 @@ nav a:hover {
 /* 简介、注意事项 */
 #wenjian,
 #jianjie,
-#gousi,
+#lianji,
 #zhuyi {
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.3);
@@ -124,13 +128,13 @@ nav a:hover {
 
 #wenjian,
 #zhuyi,
-#gousi,
+#lianji,
 #pinglun {
     margin-top: 20px;
 }
 
 #wenjian>div,
-#gousi>div,
+#lianji>div,
 #jianjie>div,
 #zhuyi>div {
     border-top: 3px dashed #1db783;
@@ -139,7 +143,8 @@ nav a:hover {
 }
 
 #jianjie>div>p,
-#zhuyi>div>p {
+#zhuyi>div>p,
+#lianji>div>p {
     margin: 10px auto;
 }
 
