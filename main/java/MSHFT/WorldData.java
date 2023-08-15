@@ -2,7 +2,11 @@ package MSHFT;
 
 import com.alibaba.fastjson.annotation.JSONType;
 
-// 版本资源
+/**
+ * @author: 曦暮流年
+ * @Description: 版本资源
+ * @date: 2023/8/10 下午 11:38
+ */
 @JSONType(orders = {"worldName", "briefIntroduction", "startDate", "tailEnd", "version"})
 public class WorldData {
     private String worldName; // 世界名

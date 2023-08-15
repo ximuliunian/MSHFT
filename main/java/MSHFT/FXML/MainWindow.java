@@ -1,30 +1,37 @@
 package MSHFT.FXML;
-// 新建服务器
 
 import MSHFT.IOJson;
+import MSHFT.SystemPrint;
 import MSHFT.WorldData;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @author: 曦暮流年
+ * @Description: 进行服务器操作
+ * @date: 2023/8/10 下午 11:27
+ */
 public class MainWindow {
     @FXML   // 表格
     private TableView<WorldData> tableView;
@@ -33,7 +40,12 @@ public class MainWindow {
     @FXML
     private Button SC;
 
-    //初始化表格内容
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 初始化表格内容
+     * @date: 2023/8/10 下午 11:28
+     */
     @FXML
     public void initialize() throws InterruptedException, IOException {
         List<WorldData> list = WD();
@@ -68,10 +80,15 @@ public class MainWindow {
         });
     }
 
-    // 从json文件中读取
+    /**
+     * @return: List<WorldData>
+     * @author: 曦暮流年
+     * @description: 从json文件中读取世界数据
+     * @date: 2023/8/10 下午 11:32
+     */
     private List<WorldData> WD() {
         // 先判断json文件是否存在不存在创建配置文件
-        if (!new File("versionManagement.json").exists()) new FileIntegrity().creationCF();
+        if (!new File("versionManagement.json").exists()) new IOJson().initJsonCf();
 
         List<WorldData> list = new ArrayList<>();
         Map<String, WorldData> map = JSON.parseObject(new IOJson().readJson("versionManagement.json"), new TypeReference<Map<String, WorldData>>() {
@@ -89,7 +106,12 @@ public class MainWindow {
         return list;
     }
 
-    // 打开服务器操作页面并关闭当前页面
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 打开服务器操作页面并关闭当前页面
+     * @date: 2023/8/10 下午 11:34
+     */
     public void SerCon() throws IOException {
         // 获取点击的行
         WorldData data = tableView.getSelectionModel().getSelectedItem();
@@ -102,7 +124,7 @@ public class MainWindow {
                     new SettingServer().setFileServerWD(entry.getValue().getVersion(), entry.getKey());
                 }
             }
-            Open("/FXML/SettingServer.fxml", "服务器操作");
+            OpenSettingServer("/FXML/SettingServer.fxml", "服务器操作");
             Stage col = (Stage) SC.getScene().getWindow();
             col.close();
         } else {
@@ -112,12 +134,17 @@ public class MainWindow {
         }
     }
 
-    // 打开更改信息页面
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 打开更改信息页面
+     * @date: 2023/8/10 下午 11:35
+     */
     public void Change() throws IOException {
         WorldData data = tableView.getSelectionModel().getSelectedItem();
         if (data != null) {
             new ChangeTo().ChTo(data);
-            Open("/FXML/ChangeTo.fxml", "更改信息");
+            new SystemPrint().Open("/FXML/ChangeTo.fxml", "更改信息");
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("请先选择服务器");
@@ -125,23 +152,39 @@ public class MainWindow {
         }
     }
 
-    // 点击打开新建服务器页面
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 点击打开新建服务器页面
+     * @date: 2023/8/10 下午 11:36
+     */
     public void newSer() throws IOException {
-        Open("/FXML/NewServer.fxml", "新建服务器");
+        new SystemPrint().Open("/FXML/NewServer.fxml", "新建服务器");
     }
 
-    // 点击打开文件完整性
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 点击打开文件完整性
+     * @date: 2023/8/10 下午 11:36
+     */
+
     public void cFile() throws IOException {
-        Open("/FXML/FileIntegrity.fxml", "文件完整性");
+        new SystemPrint().Open("/FXML/FileIntegrity.fxml", "文件完整性");
     }
 
     @FXML
     private Button get;
 
-    // 进入P2P联机页面并关闭当前页面
-    public void GoGame(ActionEvent actionEvent) throws IOException {
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 进入P2P联机页面并关闭当前页面
+     * @date: 2023/8/10 下午 11:36
+     */
+    public void GoGame() throws IOException {
         if (new File("./openp2p/openp2p.exe").exists()) {
-            Open("/P2P/GoGame.fxml", "进入P2P联机页面（进入房间）");
+            new SystemPrint().Open("/P2P/GoGame.fxml", "进入P2P联机页面（进入房间）");
             Stage cl = (Stage) get.getScene().getWindow();
             cl.close();
         } else {
@@ -151,20 +194,35 @@ public class MainWindow {
         }
     }
 
-    // 软件详情信息
-    public void about(ActionEvent actionEvent) throws IOException {
-        Open("/FXML/About.fxml", "关于 MSHFT");
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 软件详情信息
+     * @date: 2023/8/10 下午 11:37
+     */
+    public void about() throws IOException {
+        new SystemPrint().Open("/FXML/About.fxml", "关于 MSHFT");
     }
 
-    // 打开一个当在当前窗口打开一个新窗口时，除了新窗口之外，其余窗口不得使用/不能改变窗口大小
-    public void Open(String file, String title) throws IOException {
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 专门用来打开服务器操作页面的关闭时同时关闭运行中的服务器（关闭所有java）
+     * @date: 2023/8/13 下午 07:59
+     */
+    public void OpenSettingServer(String file, String title) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(file))));
         stage.setTitle(title);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.exit(0);
+                try {
+                    Runtime.getRuntime().exec("cmd /c tskill java /id:1");
+                    Runtime.getRuntime().exec("cmd /c tskill openp2p");
+                } catch (IOException e) {
+                    System.out.println("关闭失败");
+                }
             }
         });
         stage.getIcons().add(new Image("img/favicon.png"));

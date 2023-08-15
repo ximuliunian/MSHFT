@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.FXML.SettingServer">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(img/back.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MSHFT.FXML.SettingServer">
     <children>
         <HBox layoutX="50.0" layoutY="50.0" prefHeight="600.0" prefWidth="900.0">
             <children>
@@ -28,7 +28,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#P2P" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="开启房间">
+                        <Button mnemonicParsing="false" onAction="#P2P" opacity="0.8" prefHeight="35.0" prefWidth="200.0" text="创建房间">
                             <font>
                                 <Font size="17.0" />
                             </font>
@@ -147,10 +147,5 @@
             </children>
         </HBox>
         <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction="#ReturnMain" opacity="0.8" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: FFFFFF" text="&lt;- 返回主页" />
-        <TextArea fx:id="textAreaP2P" editable="false" layoutX="50.0" layoutY="673.0" opacity="0.8" prefHeight="100.0" prefWidth="900.0" style="-fx-background-insets: 0; -fx-background-color: black;">
-            <font>
-                <Font size="13.0" />
-            </font>
-        </TextArea>
     </children>
 </Pane>

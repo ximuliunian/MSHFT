@@ -7,19 +7,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author: 曦暮流年
+ * @Description: 进行连接P2P
+ * @date: 2023/8/11 上午 12:06
+ */
 public class GetRoom {
     @FXML
     private TextField biaoshi, tcpdk, bendi;
@@ -27,7 +27,12 @@ public class GetRoom {
     });
     List<Object> list = (List<Object>) map.get("apps");
 
-    // 初始化
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 初始化内容，显示上次连接时的内容
+     * @date: 2023/8/11 上午 12:07
+     */
     public void initialize() {
 
         Platform.runLater(new Runnable() {
@@ -47,7 +52,12 @@ public class GetRoom {
     @FXML
     private TextArea textArea;
 
-    // 开始连接
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 根据框里面输入的内容开始连接
+     * @date: 2023/8/11 上午 12:08
+     */
     public void texta() throws IOException {
 
         JSONObject jsonObject = new JSONObject((Map<String, Object>) list.get(0));

@@ -17,7 +17,11 @@ import java.io.IOException;
 import java.util.Map;
 
 
-// 二次确认操作
+/**
+ * @author: 曦暮流年
+ * @Description: 删除二次确认操作
+ * @date: 2023/8/11 上午 10:25
+ */
 public class ConfirmDeletion {
     @FXML
     private Button cNo;

@@ -7,9 +7,16 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * @author: 曦暮流年
+ * @Description: 更改服务器配置信息
+ * @date: 2023/8/11 上午 10:26
+ */
 public class SerProperties {
     @FXML   // 关闭页面
     private Button cl;
@@ -69,7 +76,13 @@ public class SerProperties {
         pro = p;
     }
 
-    // 初始化
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 把数据显示到服务器
+     * @date: 2023/8/11 上午 10:26
+     */
+
     @FXML
     public void initialize() throws IOException {
         properties = new Properties();
@@ -150,14 +163,27 @@ public class SerProperties {
         });
     }
 
-    // 正常的输出信息 开启/关闭
+    /**
+     * @param c: 开启、关闭
+     * @param s: 设置前缀
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 正常的输出信息 开启/关闭
+     * @date: 2023/8/11 上午 10:27
+     */
     private void yn(ChoiceBox<String> c, String s) {
         c.getItems().addAll(yesNo);
         if (properties.getProperty(s).equals("true")) c.getSelectionModel().select(0);
         else c.getSelectionModel().select(1);
     }
 
-    // 确认
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 根据更改数据进行更新信息
+     * @date: 2023/8/11 上午 10:30
+     */
+
     public void affirm() throws IOException {
         // 端口
         properties.setProperty("server-port", server_port.getText());
@@ -263,14 +289,27 @@ public class SerProperties {
         clo();
     }
 
-    // 正常的输出信息 开启/关闭
+    /**
+     * @param c: 开启、关闭
+     * @param s: 设置前缀
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 往JSON里面输入数据
+     * @date: 2023/8/11 上午 10:30
+     */
     private void ipt(ChoiceBox<String> c, String s) {
         if (c.getValue().equals("开启")) properties.setProperty(s, "true");
         else properties.setProperty(s, "false");
     }
 
 
-    // 关闭窗口
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 关闭窗口
+     * @date: 2023/8/11 上午 10:32
+     */
+
     public void clo() {
         Stage stage = (Stage) cl.getScene().getWindow();
         stage.close();

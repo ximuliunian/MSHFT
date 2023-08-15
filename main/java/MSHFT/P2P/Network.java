@@ -2,6 +2,11 @@ package MSHFT.P2P;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+/**
+ * @author: 曦暮流年
+ * @Description: 用于P2P连接的 config.json 文件
+ * @date: 2023/8/11 上午 12:14
+ */
 public class Network {
     @JSONField(name = "User")
     private String User;

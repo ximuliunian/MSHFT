@@ -13,14 +13,23 @@ import javafx.stage.Stage;
 import java.math.BigInteger;
 import java.util.Map;
 
+/**
+ * @author: 曦暮流年
+ * @Description: 修改Token和唯一标识
+ * @date: 2023/8/11 上午 10:09
+ */
 public class ConfigP2p {
     @FXML
     private TextField token;
     @FXML
     private TextField biaoshi;
 
-    // 初始化
-    @FXML
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 从JSON读取把数据显示到屏幕
+     * @date: 2023/8/11 上午 10:09
+     */
     public void initialize() {
         Platform.runLater(new Runnable() {
             @Override
@@ -35,9 +44,15 @@ public class ConfigP2p {
     }
 
 
-    // 更改完成之后点击确定
     @FXML
     private Button yes;
+
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 把更新数据输入到config.json里面
+     * @date: 2023/8/11 上午 10:10
+     */
 
     public void Yes() {
         Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {

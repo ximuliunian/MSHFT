@@ -18,8 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author: 曦暮流年
+ * @Description: 告示台并更新信息和进入房间
+ * @date: 2023/8/11 上午 12:09
+ */
 public class GoGame {
-    // 初始化
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 初始化内容，判断apps是否为空，空的话创建对象进行输入
+     * @date: 2023/8/11 上午 12:11
+     */
     public void initialize() {
         Map<String, Object> map = JSON.parseObject(new IOJson().readJson("./openp2p/config.json"), new TypeReference<Map<String, Object>>() {
         });
@@ -42,7 +52,12 @@ public class GoGame {
         }
     }
 
-    // 更新版本
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 更新信息
+     * @date: 2023/8/11 上午 12:13
+     */
     public void date() throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/P2P/ConfigP2p.fxml"))));
@@ -56,7 +71,12 @@ public class GoGame {
     @FXML
     private Button get;
 
-    // 进入房间
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 进入联机房间
+     * @date: 2023/8/11 上午 12:14
+     */
     public void getRoom() throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/P2P/GetRoom.fxml"))));

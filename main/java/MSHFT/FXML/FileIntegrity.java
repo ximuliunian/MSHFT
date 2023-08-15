@@ -9,14 +9,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-// 初始化并检查核心与配置文件的完整性
+/**
+ * @author: 曦暮流年
+ * @Description: 检查文件的完整性
+ * @date: 2023/8/11 上午 12:15
+ */
 public class FileIntegrity {
-    // 检查核心和配置文件是否存在不存在抛出报错提示并尝试进行修复
-
     @FXML
     private TextArea textArea;
     @FXML
@@ -30,7 +34,12 @@ public class FileIntegrity {
     @FXML
     private TextField P2P;
 
-    // 判断版本配置文件
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 判断版本配置文件是否存在
+     * @date: 2023/8/11 上午 09:51
+     */
     void ErrorVM() throws InterruptedException {
         if (new File("versionManagement.json").exists()) {
             textArea.appendText("\n版本配置文件正常");
@@ -47,7 +56,7 @@ public class FileIntegrity {
             Map<String, WorldData> map = new HashMap<>();
 
 
-            if (creationCF()) {
+            if (new IOJson().initJsonCf() == 1) {
                 textArea.appendText("\n恢复成功");
                 vn.setText("正常");
             } else {
@@ -57,13 +66,12 @@ public class FileIntegrity {
         Thread.sleep(1000);
     }
 
-    // 创建配置文件
-    Boolean creationCF() {
-        Map<String, WorldData> map = new HashMap<>();
-        return new IOJson().initJsonCf(map) == 1;
-    }
-
-    // 调用ErrorHx类来判断并输出核心是否存在
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 调用ErrorHx类来判断并输出核心是否存在
+     * @date: 2023/8/11 上午 09:52
+     */
     void ErrorHx() throws InterruptedException {
         ErrorExists errorEx = new ErrorExists();
 
@@ -99,7 +107,13 @@ public class FileIntegrity {
         Thread.sleep(1000);
     }
 
-    // 尝试恢复核心
+    /**
+     * @param bb: 恢复的版本号
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 尝试恢复核心
+     * @date: 2023/8/11 上午 09:52
+     */
     void recoverHx(String bb) throws InterruptedException {
         Thread.sleep(1000);
         textArea.appendText("\n正在尝试恢复");
@@ -150,7 +164,12 @@ public class FileIntegrity {
         textArea.appendText("\n恢复失败请前往https://catmc.org下载" + bb + "版本");
     }
 
-    // 判断隔离版本文件夹
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 判断隔离版本文件夹
+     * @date: 2023/8/11 上午 09:53
+     */
     void ErrorMkdir() {
         // 判断文件夹 - server
         File server = new File("server");
@@ -173,7 +192,13 @@ public class FileIntegrity {
         if (!openP2P.exists()) Mkdir("openP2P");
     }
 
-    // 生成指定文件夹
+    /**
+     * @param version: 文件夹名称
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 生成指定文件夹
+     * @date: 2023/8/11 上午 09:53
+     */
     private void Mkdir(String version) {
         File file = new File(version);
         if (file.mkdir()) {
@@ -182,7 +207,13 @@ public class FileIntegrity {
     }
 
 
-    // 点击按钮之后进行打印输出
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 点击按钮之后进行打印输出到TextArea
+     * @date: 2023/8/11 上午 09:54
+     */
+
     public void file() {
         Platform.runLater(new Runnable() {
             @Override
@@ -201,10 +232,10 @@ public class FileIntegrity {
 
                             // 检查联机文件是否缺失是否缺失
                             textArea.appendText("\n检查联机文件是否正常");
-                            if(new File("./openp2p/openp2p.exe").exists()){
+                            if (new File("./openp2p/openp2p.exe").exists()) {
                                 textArea.appendText("\n联机文件正常");
                                 P2P.setText("正常");
-                            }else {
+                            } else {
                                 textArea.appendText("\n联机文件缺失");
                                 P2P.setText("缺失");
                             }
@@ -231,9 +262,12 @@ public class FileIntegrity {
     }
 }
 
-// 判断核心
+/**
+ * @author: 曦暮流年
+ * @Description: 判断核心是否存在
+ * @date: 2023/8/11 上午 09:55
+ */
 class ErrorExists {
-    // 判断核心
     boolean Hx(String hx) {
         File versionHx = new File("server/CatServer-" + hx + ".jar");
         return versionHx.exists();

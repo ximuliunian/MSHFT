@@ -12,13 +12,23 @@ import javafx.stage.Stage;
 
 import java.util.Map;
 
-
+/**
+ * @author: 曦暮流年
+ * @Description: 更改表格数据
+ * @date: 2023/8/11 上午 09:56
+ */
 public class ChangeTo {
     // 开始时间
 
     private static WorldData worldData;
 
-    // 定义一个用来传值的方法（千万不要使用类的构造方法，千万不要）
+    /**
+     * @param data: 服务器单条数据
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 进行传值
+     * @date: 2023/8/11 上午 09:59
+     */
     public void ChTo(WorldData data) {
         ChangeTo.worldData = data;
     }
@@ -28,7 +38,12 @@ public class ChangeTo {
     @FXML   // 确认按钮
     private Button button;
 
-    // 初始化把更改之前的数据打印在上面
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 初始化把更改之前的数据打印在上面
+     * @date: 2023/8/11 上午 10:00
+     */
     @FXML
     public void initialize() {
         Platform.runLater(new Runnable() {
@@ -41,7 +56,13 @@ public class ChangeTo {
 
     }
 
-    // 更改数据
+    /**
+     * @return: void
+     * @author: 曦暮流年
+     * @description: 获取输入数据然后更改数据
+     * @date: 2023/8/11 上午 10:00
+     */
+
     @FXML
     public void change() throws InterruptedException {
         // 先找到要更改的那条json数据
